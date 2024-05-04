@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+## 개발 환경 세팅
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Node.js 18+를 설치합니다.
+- 터미널을 열고 `npm install`을 입력하여 패키지를 모두 설치합니다.
+- `npm run start` 명령어로 개발 서버를 실행합니다.
 
-## Available Scripts
+## Commit Convention
 
-In the project directory, you can run:
+커밋 요약은 "(type): (content)" 형식으로 작성합니다.
 
-### `npm start`
+type은 영어 소문자로 작성하며, content는 한국어로 명확하게 작성합니다. 요약이 너무 길어지면 세부적인 내용은 커밋 설명에 풀어적고 요약은 간결하게 수정합니다. (이모지는 선택사항)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+| 이모지 | 깃모지 사용        | 타입     | 상황                                                  |
+| ------ | ------------------ | -------- | ----------------------------------------------------- |
+| 🎨     | : art :            | design   | CSS 등 사용자 UI 디자인 변경                          |
+| 💄     | : lipstick :       | style    | 코드 포맷 변경, 세미 콜론 누락, 코드 수정이 없는 경우 |
+| ✨     | : sparkles :       | feat     | 새로운 기능 추가, 구현                                |
+| 💬     | : speech_balloon : | chore    | 텍스트 또는 리터럴 추가 및 수정                       |
+| 📝     | : memo :           | docs     | 문서 파일 추가 및 수정 (readme)                       |
+| ✏️     | : pencil2 :        | chore    | 단순 오타 수정                                        |
+| 🐛     | : bug :            | fix      | 버그 수정                                             |
+| 🚚     | : truck :          | docs     | 파일, 경로, route를 옮기거나 이름 변경                |
+| ♻️     | : recycle :        | refactor | 코드 리팩토링                                         |
+| 🔥     | : fire :           | remove   | 삭제 (파일, 코드)                                     |
+| 🚚     | : truck :          | rename   | 파일, 폴더명 수정                                     |
+| 💡     | : bulb :           | comment  | 필요한 주석 추가 및 변경                              |
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## PR Convention
 
-### `npm test`
+PR 제목은 커밋 요약과 동일하게 "(type): (content)" 형식으로 작성하며, 내용은 다음을 포함하여 작성합니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Changes 📝
 
-### `npm run build`
+이 PR에서 작업한 사항을 적어주세요.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Issues 🚩
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+이 PR과 연관된 Issue를 작성해주세요. 해당 PR이 Issue를 해결한다면 Issue도 꼭 닫아주세요!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Screenshot 📷 (선택)
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+작업한 사항을 스크린샷으로 찍을 수 있다면 (예: 신규 페이지 구현, 새로운 컴포넌트 구현) 스크린샷을 찍어서 올려주세요. 반드시 올릴 필요는 없습니다!
