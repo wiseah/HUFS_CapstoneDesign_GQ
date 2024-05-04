@@ -2,7 +2,7 @@
 
 - Node.js 18+를 설치합니다.
 - 터미널을 열고 `npm install`을 입력하여 패키지를 모두 설치합니다.
-- `npm run start` 명령어로 개발 서버를 실행합니다.
+- `npm start` 명령어로 개발 서버를 실행합니다.
 
 ## Commit Convention
 
