@@ -44,6 +44,7 @@ const theme={
         crop:'24px',
         //동그라미 느낌표 아이콘
         exclamation:'24px',
+        
         alert:'24px',
         componentLeft:'24px',
         componentRight:'24px',
