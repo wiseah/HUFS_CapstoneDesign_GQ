@@ -20,6 +20,11 @@ const Background = styled.p`
   display: flex;
   flex-direction: column;
   align-items: center;  /* 모든 자식 요소를 중앙 정렬 */
+
+  scrollbar-width: none;
+  .scroll::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const LogoImage = styled.img`
