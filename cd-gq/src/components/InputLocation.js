@@ -81,7 +81,7 @@ const IsToggledDiv=styled.div`
 
 const IsToggledHeader=styled.div`
   display:flex;
-  flex-drection:row;
+  flex-direction:row;
 
   margin-top:20px;
   margin-left:0px;
