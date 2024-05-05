@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import theme from '../styles/theme';
 import LogoImg from '../assets/images/LogoImg.png';
@@ -20,6 +20,11 @@ const Background = styled.p`
   display: flex;
   flex-direction: column;
   align-items: center;  /* 모든 자식 요소를 중앙 정렬 */
+
+  scrollbar-width: none;
+  .scroll::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const LogoImage = styled.img`
@@ -100,7 +105,7 @@ const Main = () => {
             </IconTextContainer>
           </CheckButton>
         </ButtonDiv>
-        
+        <Outlet /> 
       </Background>
     </>
   );

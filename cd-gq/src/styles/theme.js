@@ -9,7 +9,11 @@ const theme={
         yellow:'#FFAC4A',
         lightorange:'#FFDAD2',
         green:'#2ADEA1',
+        lightgreen:'#CAF7E7',
         skyblue:'#2CE3E6',
+    },
+    hoverColors:{
+        main:'#A2C6B9',
     },
     fonts:{
         fontFamily:'"Noto Sans KR", sans-serif',
@@ -31,6 +35,16 @@ const theme={
         },
         weather:'18px',
     },
+    fontSizes:{
+        input:'20px',
+        inputBold:'24px',
+        inputSelect:'22px',
+    },
+    fontsWeights:{
+        inputLight:'Light',
+        inputBold:'Bold',
+        inputSelect:'Semi Bold'
+    },
     icons:{
         color:'#fff',
         //아이콘 사이즈
@@ -50,7 +64,17 @@ const theme={
         componentRight:'24px',
         home:'30px',
         backArrow:'34px'
+    },
+    divSizes:{
+        mainInputDivWidth:'364px',
+        mainInputDivHeight:'60px',
+        toggleDivWidth:'364px',
+        toggleDivHeight:'243px',
+    },
+    borderRadius:{
+        input:'50px',
     }
+
 }
 
 export default theme;
