@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import theme from '../styles/theme';
 import LogoImg from '../assets/images/LogoImg.png';
@@ -100,7 +100,7 @@ const Main = () => {
             </IconTextContainer>
           </CheckButton>
         </ButtonDiv>
-        
+        <Outlet /> 
       </Background>
     </>
   );
