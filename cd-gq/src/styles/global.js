@@ -39,6 +39,11 @@ const GlobalStyle=createGlobalStyle`
     display:flex;
     justify-content:center;
     align-item:center;
+
+    scrollbar-width: none;
+    .scroll::-webkit-scrollbar {
+        display: none;
+    }
 `;
 
 export default GlobalStyle;

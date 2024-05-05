@@ -14,6 +14,8 @@ const Container=styled.div`
     display:flex;
     justify-content:center;
     align-item:center;
+
+    overflow: auto;
 `;
 
 const Content=styled.div`
