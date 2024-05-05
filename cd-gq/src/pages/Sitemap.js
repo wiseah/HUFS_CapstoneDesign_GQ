@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import BlockButton from "../components/BlockButton";
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import routes from "../routes.js";
 
 const Container = styled.div`
@@ -25,7 +25,15 @@ const Sitemap = ({}) => {
             />
         ));
 
-    return <Container>{elements}</Container>;
+    return (
+        <>
+            <Container>
+                {elements}
+                <Outlet />
+            </Container>
+        </>
+        
+    );
 };
 
 export default Sitemap;
