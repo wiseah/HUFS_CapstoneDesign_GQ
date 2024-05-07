@@ -37,6 +37,7 @@ const theme={
     },
     fontSizes:{
         input:'20px',
+        inputHeader:'18px',
         inputBold:'24px',
         inputSelect:'22px',
     },

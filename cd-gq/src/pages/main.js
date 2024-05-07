@@ -5,7 +5,7 @@ import theme from '../styles/theme';
 import LogoImg from '../assets/images/LogoImg.png';
 import InputLocation from '../components/InputLocation';
 import InputCrop from '../components/InputCrop';
-import InputDay from '../components/InputDay';
+import InputDate from '../components/InputDate';
 import { BsArrowRightCircleFill } from "react-icons/bs";
 
 const Background = styled.p`
@@ -16,7 +16,8 @@ const Background = styled.p`
         #2ADEA1 50%,
         #BCFEE7 100%
     );
-  height: 100vh;
+  height: 130vh;
+  // height:100%;
   display: flex;
   flex-direction: column;
   align-items: center;  /* 모든 자식 요소를 중앙 정렬 */
@@ -38,7 +39,7 @@ const Components = styled.div`
 `;
 
 const ComponentsContainer = styled.div`
-padding-top: 19px;
+  padding-top: 19px;
 `;
 
 const Title1 = styled.div`
@@ -57,7 +58,7 @@ const Title2 = styled.div`
 `;
 
 const ButtonDiv = styled.div`
-  margin-top: 50px;
+  margin: 50px auto;
 `;
 const CheckButton = styled.button`
     width: 250px;
@@ -94,7 +95,7 @@ const Main = () => {
             <InputCrop/>  
           </ComponentsContainer> 
           <ComponentsContainer>
-            <InputDay/>
+            <InputDate />
           </ComponentsContainer>   
         </Components>
         <ButtonDiv>

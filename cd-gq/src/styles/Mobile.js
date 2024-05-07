@@ -13,7 +13,7 @@ import SiteMap from '../pages/Sitemap';
 const Container=styled.div`
     display:flex;
     justify-content:center;
-    align-item:center;
+    align-items:center;
 
     overflow: auto;
 `;
@@ -31,7 +31,7 @@ const Content=styled.div`
 // 01.home Header
 const Header=styled.div`
     display:flex;
-    align-item:center;
+    align-items:center;
     justify-content:space-between;
 
     height:40px;
@@ -45,7 +45,7 @@ const Mobile=()=>{
         <>
             <Container>
                 <Content>
-                    <Outlet /> 
+                    <Outlet />
                 </Content>
             </Container>
         </>
