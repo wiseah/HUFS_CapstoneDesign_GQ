@@ -141,11 +141,12 @@ const IsToggleCropDiv=styled.div`
   }
 `;
 
-function InputCrop() {
+function InputCrop( {onToggle} ) {
   const [isToggled, setIsToggled]=useState(false);
 
   const handleToggle=()=>{
     setIsToggled(prevState=>!prevState);
+    onToggle(!isToggled);  // 토글 상태에 따라 Main에 알림
   };
 
   return (

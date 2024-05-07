@@ -101,7 +101,7 @@ const DateHeader=styled.div`
 
     display:flex;
     align-items:center;
-    justify-contens:space-between;
+    justify-content:space-between;
 
     color:rgba(254,88,88,1);
     font-size:${({theme})=>theme.divSizes.inputHeader};
@@ -127,7 +127,7 @@ const Button=styled.button`
 
     & > svg {
         width:24px;
-        heigt:24px;
+        height:24px;
     }
 
     &.disabled{
@@ -228,11 +228,13 @@ const DatePicker=({startDate,endDate, onChange})=>{
     );
 };
 
-function InputDate() {
+function InputDate( {onToggle} ) {
   const [isToggled, setIsToggled]=useState(false);
 
   const handleToggle=()=>{
     setIsToggled(prevState=>!prevState);
+    // onToggle 호출 시 isOpen과 함께 높이값도 전달
+    onToggle(!isToggled);  // 토글 상태에 따라 Main에 알림과 함께 높이값도 전달
   };
   return (
     <>
