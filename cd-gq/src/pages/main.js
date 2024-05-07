@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import theme from '../styles/theme';
 import LogoImg from '../assets/images/LogoImg.png';
@@ -29,7 +29,7 @@ const Background = styled.div`
 const LogoImage = styled.img`
     width: 250px;
     height: 250px;
-    margin-top: 36px;
+    margin-top: 63px;
 `;
 
 const Components = styled.div`
@@ -45,7 +45,7 @@ const Title1 = styled.div`
   font-size: 20px;
   color: #ffffff; /* 글씨 색상을 흰색으로 설정 */
   text-align: center; /* 텍스트를 중앙 정렬 */
-  padding-top: 28px;
+  padding-top: 36px;
 `;
 const Title2 = styled.div`
   font-weight: 800; /* Semi-bold 폰트 두께 */
@@ -56,7 +56,7 @@ const Title2 = styled.div`
 `;
 
 const ButtonDiv = styled.div`
-  margin: 50px auto;
+  margin: 60px auto;
 `;
 const CheckButton = styled.button`
     width: 250px;
@@ -86,6 +86,8 @@ const Main = () => {
     setExtraHeight(prev => prev + (isOpen ? heightChange : -heightChange));
   };
 
+  const navigate = useNavigate();  // useNavigate 사용
+
   return (
     <>
       <Background extraHeight={extraHeight}>
@@ -104,7 +106,7 @@ const Main = () => {
           </ComponentsContainer>   
         </Components>
         <ButtonDiv>
-          <CheckButton>
+          <CheckButton onClick={() => navigate('/home')}>
             <IconTextContainer>
               <BsArrowRightCircleFill size="28px" style={{ marginRight: '10px'}} />
               확인하기
