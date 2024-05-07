@@ -1,10 +1,104 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components';
+import { BiChevronLeft } from "react-icons/bi";
+import { BsFillHouseDoorFill } from "react-icons/bs";
+import InsectImg from '../assets/images/InsectTestImg.png';
+import WormLeftTopImg from '../assets/images/wormLeftTop.png';
+import WormRightBottomImg from '../assets/images/wormRightBottom.png';
+import PestInformation from '../components/PestInformation';
+import DealWithPest from '../components/DealWithPest';
+
+const Background = styled.div`
+  background: linear-gradient(to bottom, #FF6A4A 27%, #FFFFFF 100%);
+  height: 844px;
+  scrollbar-width: none;
+  .scroll::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  padding: 31px;
+`;
+
+const Button = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ImgContainer = styled.div`
+  position: relative;
+  width: 260px;
+  height: 274px;
+  background: linear-gradient(to bottom, #ED6345 0%, #99402C 100%);
+  margin-top: 49px;
+  border-radius: 25px;
+`;
+
+const InsectImage = styled.img`
+  width: 220px;
+  height: 230px;
+  margin: 22px 20px;
+`;
+
+const WormLeftTop = styled.img`
+  position: absolute;
+  left: 46px;
+  top: 102px;
+  z-index: 1;
+`;
+
+const WormRightBottom = styled.img`
+  position: absolute;
+  left: 252px;
+  top: 324px;
+  z-index: 1;
+`;
+
+const InsectName = styled.div`
+margin-top: 61px;
+color: #ffffff;
+font-size: 32px;
+font-weight: 900;
+`;
 
 function Detail() {
+  const navigate = useNavigate();
+  
   return (
-    <div>
-      해충설명 페이지 입니다.
-    </div>
+    <Background>
+      <Header>
+        <Button onClick={() => navigate('/home')}>
+          <BiChevronLeft size='35px' color='#ffffff'/>
+        </Button>
+        <Button onClick={() => navigate('/main')}>
+          <BsFillHouseDoorFill size='30px' color='#ffffff'/>
+        </Button>
+      </Header>
+      <Body>
+        <WormLeftTop src={WormLeftTopImg}/>
+        <ImgContainer>
+          <InsectImage src={InsectImg}/>
+        </ImgContainer>
+        <WormRightBottom src={WormRightBottomImg}/>
+        <InsectName>톱다리개미허리노린재</InsectName>
+        <PestInformation/>
+        <DealWithPest/>
+      </Body>
+    </Background>
   )
 }
 
