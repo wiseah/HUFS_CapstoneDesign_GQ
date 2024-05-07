@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import theme from '../styles/theme';
@@ -8,20 +8,18 @@ import InputCrop from '../components/InputCrop';
 import InputDate from '../components/InputDate';
 import { BsArrowRightCircleFill } from "react-icons/bs";
 
-const Background = styled.p`
-    /* color: ${theme.colors.orange}; // 직접 참조 */
-    background: linear-gradient(
-        to bottom,
-        #2ADEA1 0%,
-        #2ADEA1 50%,
-        #BCFEE7 100%
-    );
-  height: 130vh;
-  // height:100%;
+
+const Background = styled.div`
+  background: linear-gradient(
+    to bottom,
+    #2ADEA1 0%,
+    #2ADEA1 50%,
+    #BCFEE7 100%
+  );
+  height: ${props => 844 + props.extraHeight}px;  // 변경된 부분
   display: flex;
   flex-direction: column;
-  align-items: center;  /* 모든 자식 요소를 중앙 정렬 */
-
+  align-items: center;
   scrollbar-width: none;
   .scroll::-webkit-scrollbar {
     display: none;
@@ -81,21 +79,28 @@ const IconTextContainer = styled.div`
 `;
 
 const Main = () => {
+  const [extraHeight, setExtraHeight] = useState(0);
+
+  // 변경: isOpen과 heightChange를 인수로 받아 처리
+  const toggleHeight = (isOpen, heightChange) => {
+    setExtraHeight(prev => prev + (isOpen ? heightChange : -heightChange));
+  };
+
   return (
     <>
-      <Background>
+      <Background extraHeight={extraHeight}>
         <LogoImage src={LogoImg} />
         <Title1>한 손에 담긴 해충 알림 센터</Title1>
         <Title2>G Q</Title2>
         <Components>
           <ComponentsContainer>
-            <InputLocation/>
+            <InputLocation onToggle={isOpen => toggleHeight(isOpen, 243)} />
           </ComponentsContainer>
           <ComponentsContainer>
-            <InputCrop/>  
+            <InputCrop onToggle={isOpen => toggleHeight(isOpen, 243)} />  
           </ComponentsContainer> 
           <ComponentsContainer>
-            <InputDate />
+            <InputDate onToggle={isOpen => toggleHeight(isOpen, 348)} />
           </ComponentsContainer>   
         </Components>
         <ButtonDiv>

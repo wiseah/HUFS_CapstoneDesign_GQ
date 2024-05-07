@@ -134,18 +134,19 @@ const IsToggleLocationDiv=styled.div`
   }
 `;
 
-function InputLocation() {
+function InputLocation( {onToggle} ) {
   const [isToggled, setIsToggled]=useState(false);
 
   const handleToggle=()=>{
     setIsToggled(prevState=>!prevState);
+    onToggle(!isToggled);  // 토글 상태에 따라 Main에 알림
   };
   
   return (
     <>
-          <InputDiv onClick={handleToggle}>
+          <InputDiv>
             지역 선택(도 단위)
-            <button className='icon'>
+            <button onClick={handleToggle} className='icon'>
               {isToggled?<BsCaretUpFill className='icon'/>:<BsCaretDownFill className='icon'/>}
             </button>
           </InputDiv>
