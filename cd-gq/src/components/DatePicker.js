@@ -13,7 +13,7 @@ const DateHeader=styled.div`
 
     display:flex;
     align-items:center;
-    justify-contens:space-between;
+    justify-content:space-between;
 
     color:rgba(254,88,88,1);
     font-size:${({theme})=>theme.divSizes.inputHeader};
@@ -39,7 +39,7 @@ const Button=styled.button`
 
     & > svg {
         width:24px;
-        heigt:24px;
+        height:24px;
     }
 
     &.disabled{
