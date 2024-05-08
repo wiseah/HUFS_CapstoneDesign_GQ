@@ -1,7 +1,5 @@
 import React,{useState} from 'react';
-
 import styled from 'styled-components';
-import classNames from 'classnames';
 
 import { BsCaretDownFill } from 'react-icons/bs';
 import { BsCaretUpFill } from 'react-icons/bs';
@@ -36,6 +34,7 @@ const InputDiv=styled.button`
     height:${({theme})=>theme.icons.downFill};
 
     margin:auto 0px auto auto;
+    color:${({theme})=>theme.colors.darkblue};
   }
 
   &:hover {
@@ -45,6 +44,7 @@ const InputDiv=styled.button`
     transition: background-color 0.2s;
     
     font-weight:${({theme})=>theme.fontsWeights.inputBold};
+
   }
 
   button{
@@ -89,7 +89,6 @@ const IsToggledHeader=styled.div`
   margin-left:0px;
 
   text-align:left;
-  // align-items:center;
 
   font-size:${({theme})=>theme.fontSizes.inputBold};
   font-weight:${({theme})=>theme.fontsWeights.inputBold};
@@ -110,8 +109,6 @@ const IsToggledLine=styled.div`
 const IsToggledButtonsDiv=styled.div`
   display:flex;
   flex-direction:row;
-
-  // flexWrap: 'wrap'
 `;
 const IsToggleCropDiv=styled.div`
   display:flex;

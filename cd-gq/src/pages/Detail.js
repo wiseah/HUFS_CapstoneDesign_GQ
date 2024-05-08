@@ -79,26 +79,28 @@ function Detail() {
   const navigate = useNavigate();
   
   return (
-    <Background>
-      <Header>
-        <Button onClick={() => navigate('/home')}>
-          <BiChevronLeft size='35px' color='#ffffff'/>
-        </Button>
-        <Button onClick={() => navigate('/main')}>
-          <BsFillHouseDoorFill size='30px' color='#ffffff'/>
-        </Button>
-      </Header>
-      <Body>
-        <WormLeftTop src={WormLeftTopImg}/>
-        <ImgContainer>
-          <InsectImage src={InsectImg}/>
-        </ImgContainer>
-        <WormRightBottom src={WormRightBottomImg}/>
-        <InsectName>톱다리개미허리노린재</InsectName>
-        <PestInformation/>
-        <DealWithPest/>
-      </Body>
-    </Background>
+    <>
+      <Background>
+        <Header>
+          <Button onClick={() => navigate('/home')}>
+            <BiChevronLeft size='35px' color='#ffffff'/>
+          </Button>
+          <Button onClick={() => navigate('/main')}>
+            <BsFillHouseDoorFill size='30px' color='#ffffff'/>
+          </Button>
+        </Header>
+        <Body>
+          <WormLeftTop src={WormLeftTopImg}/>
+          <ImgContainer>
+            <InsectImage src={InsectImg}/>
+          </ImgContainer>
+          <WormRightBottom src={WormRightBottomImg}/>
+          <InsectName>톱다리개미허리노린재</InsectName>
+          <PestInformation/>
+          <DealWithPest/>
+        </Body>
+      </Background>
+    </>
   )
 }
 

@@ -44,7 +44,8 @@ const theme={
     fontsWeights:{
         inputLight:'Light',
         inputBold:'Bold',
-        inputSelect:'Semi Bold'
+        inputSelect:'Semi Bold',
+        toggle:'Semi Bold'
     },
     icons:{
         color:'#fff',

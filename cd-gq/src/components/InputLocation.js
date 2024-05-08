@@ -34,6 +34,8 @@ const InputDiv=styled.button`
     height:${({theme})=>theme.icons.downFill};
 
     margin:auto 0px auto auto;
+
+    color:${({theme})=>theme.colors.darkblue};
   }
 
   &:hover {
@@ -144,10 +146,11 @@ function InputLocation( {onToggle} ) {
   
   return (
     <>
-          <InputDiv>
+          <InputDiv onClick={handleToggle}>
             지역 선택(도 단위)
-            <button onClick={handleToggle} className='icon'>
-              {isToggled?<BsCaretUpFill className='icon'/>:<BsCaretDownFill className='icon'/>}
+            <button className='icon'>
+              {isToggled?
+                <BsCaretUpFill className='icon'/>:<BsCaretDownFill className='icon'/>}
             </button>
           </InputDiv>
           {isToggled && (
