@@ -40,12 +40,15 @@ const theme={
         inputHeader:'18px',
         inputBold:'24px',
         inputSelect:'22px',
+        stateHeader:'24px',
     },
     fontsWeights:{
         inputLight:'Light',
         inputBold:'Bold',
         inputSelect:'Semi Bold',
-        toggle:'Semi Bold'
+        toggle:'Semi Bold',
+        stateButton:'Bold',
+        state:'Bold',
     },
     icons:{
         color:'#fff',
