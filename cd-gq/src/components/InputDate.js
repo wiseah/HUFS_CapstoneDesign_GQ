@@ -40,6 +40,7 @@ const InputDiv=styled.button`
     height:${({theme})=>theme.icons.downFill};
 
     margin:auto 0px auto auto;
+    color:${({theme})=>theme.colors.darkblue};
   }
 
   &:hover {
