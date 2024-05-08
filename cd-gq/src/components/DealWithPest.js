@@ -67,6 +67,11 @@ const ToggleContent=styled.div`
 function DealWithPest({onToggle}) {
   const [isToggled, setIsToggled] = useState(false);
 
+    const handleToggle = () => {
+        setIsToggled(prevState => !prevState);
+        onToggle(!isToggled); // 토글 상태를 전달
+    };
+
   // const handleToggle = () => {
   //   setIsToggled(prevState => !prevState);
   //   onToggle(!isToggled); // 토글 상태를 전달
@@ -99,7 +104,7 @@ function DealWithPest({onToggle}) {
         )}
         {!isToggled && (<></>)} */}
         {/* test용 컴포넌트 */}
-        <PestContent />
+        <PestContent onToggle={onToggle}/>
       </Container>
     </>
   )
