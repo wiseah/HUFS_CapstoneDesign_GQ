@@ -27,10 +27,13 @@ const Container=styled.div`
     flex-direction: column;
     justify-content: flex-start;
 
-    padding:25px;
+    width:330px;
+
+    padding:3vw;
 
     flex-wrap: wrap;
-    gap:25px;
+    /* gap:25px; */
+    gap:3vw;
 
     color:${({theme})=>theme.colors.white};
     background-color: ${({theme})=>theme.colors.red};
@@ -58,8 +61,12 @@ const Body=styled.div`
     align-items: center;
     justify-content: space-between;
 
-    flex-wrap:wrap;
-    gap:30px;
+    width:100%;
+    height:100%;
+
+    /* flex-wrap:wrap; */
+    /* gap:30px; */
+    gap:0.25vw;
     margin-bottom: 15px;
   
     font-weight: ${({theme})=>theme.fontsWeights.state};
@@ -106,10 +113,12 @@ const GotoDetail=styled.button`
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap:15px;
+    gap:10px;
 
     margin-top:10px;
     padding:18px 38px;
+
+    width: 100%;
 
     background-color: ${({theme})=>theme.colors.white};
     border-radius: 50px;

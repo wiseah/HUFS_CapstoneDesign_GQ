@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
 import Header from '../components/Header';
+import State from '../components/State';
 
 const Background = styled.div`
   display: flex;
@@ -29,6 +30,7 @@ function Home() {
   return (
     <Background>
       <Header/>
+      <State />
       <Button onClick={() => navigate('/')}>사이트맵으로 가기</Button>
     </Background>
   )
