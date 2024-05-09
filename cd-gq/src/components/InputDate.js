@@ -114,7 +114,7 @@ const Button=styled.button`
 
     background:none;
     border:none;
-    border-radius:50%
+    border-radius:50%;
 
     display:flex;
     align-items:center;
@@ -122,7 +122,7 @@ const Button=styled.button`
 
     cursor:pointer;
 
-    &:hover:{
+    &:hover{
         background-color:${({theme})=>theme.colors.darkblue};
     }
 
