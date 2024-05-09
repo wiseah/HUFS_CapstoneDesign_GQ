@@ -56,15 +56,15 @@ const InsectImage = styled.img`
 
 const WormLeftTop = styled.img`
   position: absolute;
-  left: 46px;
-  top: 102px;
+  left: -20px;
+  top: -10px;
   z-index: 1;
 `;
 
 const WormRightBottom = styled.img`
   position: absolute;
-  left: 252px;
-  top: 324px;
+  left: 190px;
+  top: 208px;
   z-index: 1;
 `;
 
@@ -90,11 +90,13 @@ function Detail() {
           </Button>
         </Header>
         <Body>
-          <WormLeftTop src={WormLeftTopImg}/>
+          
           <ImgContainer>
+          <WormLeftTop src={WormLeftTopImg}/>
             <InsectImage src={InsectImg}/>
-          </ImgContainer>
           <WormRightBottom src={WormRightBottomImg}/>
+          </ImgContainer>
+          
           <InsectName>톱다리개미허리노린재</InsectName>
           <PestInformation/>
           <DealWithPest/>
