@@ -29,11 +29,10 @@ const Container=styled.div`
 
     width:330px;
 
-    padding:3vw;
+    padding:1.5vw;
 
     flex-wrap: wrap;
-    /* gap:25px; */
-    gap:3vw;
+    gap:1.5vw;
 
     color:${({theme})=>theme.colors.white};
     background-color: ${({theme})=>theme.colors.red};
@@ -62,11 +61,8 @@ const Body=styled.div`
     justify-content: space-between;
 
     width:100%;
-    height:100%;
 
-    /* flex-wrap:wrap; */
-    /* gap:30px; */
-    gap:0.25vw;
+    gap: 1vw;
     margin-bottom: 15px;
   
     font-weight: ${({theme})=>theme.fontsWeights.state};
@@ -113,7 +109,7 @@ const GotoDetail=styled.button`
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap:10px;
+    gap:5px;
 
     margin-top:10px;
     padding:18px 38px;
@@ -127,7 +123,7 @@ const GotoDetail=styled.button`
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 50px;
 
-    font-size: ${({theme})=>theme.fonts.button};
+    font-size: ${({theme})=>theme.fonts.stateButton};
     font-weight: ${({theme})=>theme.fontsWeights.stateButton};
 
 ;`

@@ -23,6 +23,7 @@ const theme={
         },
         placeHolder:'20px',
         button:'28px',
+        stateButton:'22px',
         select:'24px',
         day:{
             month:'18px',
