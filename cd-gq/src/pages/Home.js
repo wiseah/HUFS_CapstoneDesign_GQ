@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
+import Header from '../components/Header';
 
 const Background = styled.div`
   display: flex;
@@ -19,6 +20,7 @@ background-color: #3EB7EC;
 color: #ffffff;
 font-size: 24px;
 font-weight: 500;
+margin-top: 400px;
 `;
 
 function Home() {
@@ -26,9 +28,7 @@ function Home() {
 
   return (
     <Background>
-      <div>
-        홈 페이지 입니다.
-      </div>
+      <Header/>
       <Button onClick={() => navigate('/')}>사이트맵으로 가기</Button>
     </Background>
   )
