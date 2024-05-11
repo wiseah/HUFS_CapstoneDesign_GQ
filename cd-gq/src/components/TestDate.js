@@ -11,45 +11,25 @@ import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 
-// import { addDays } from 'date-fns';
-
-// const TestDate=()=>{
-//     const [state, setState] = useState([
-//         {
-//           startDate: new Date(),
-//           endDate: null,
-//           key: 'selection'
-//         }
-//       ]);
-      
-//     return(
-//         <>
-//             <Container>
-//                 <DateRange
-//                     editableDateInputs={true}
-//                     onChange={item => setState([item.selection])}
-//                     moveRangeOnFirstSelection={false}
-//                     ranges={state}
-//                 />
-//             </Container>
-            
-//         </>
-//     )
-// }
-
 const Container=styled.div`
     display:flex;
     justify-content:center;
     text-align:center;
-    align-item:center;
-
-    // color:${({theme})=>theme.colors.mainPageColor};
-    // background-color:${({theme})=>theme.colors.darkblue};
+    align-items:center ;
+    //전체 Container에서 color 
+    color: ${({theme})=>theme.colors.darkblue};
 
     .testCode{
-        // background-color:${({theme})=>theme.colors.white};
-        background-color:${({theme})=>theme.colors.yellow};
+        background-color:${({theme})=>theme.colors.white};
+        display: flex;
+        flex-direction: column;
+
+        /* justify-content: center;
+        align-items: center; */
+
+        width: 100%;
         border-radius:15px;
+        box-shadow:0px 3px 5px #0000002f;
     }
 `;
 
@@ -70,7 +50,9 @@ const TestDate = () => {
                     editableDateInputs={false} // 날짜 입력 불가능하도록 설정
                     onChange={item => setState([item.selection])}
                     moveRangeOnFirstSelection={false}
+                    // 얘가 위에 기간을 없애줌
                     ranges={state}
+
                 />
             </Container>
 

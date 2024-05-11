@@ -27,10 +27,12 @@ const Container=styled.div`
     flex-direction: column;
     justify-content: flex-start;
 
-    padding:25px;
+    width:330px;
+
+    padding:1.5vw;
 
     flex-wrap: wrap;
-    gap:25px;
+    gap:1.5vw;
 
     color:${({theme})=>theme.colors.white};
     background-color: ${({theme})=>theme.colors.red};
@@ -58,8 +60,9 @@ const Body=styled.div`
     align-items: center;
     justify-content: space-between;
 
-    flex-wrap:wrap;
-    gap:30px;
+    width:100%;
+
+    gap: 1vw;
     margin-bottom: 15px;
   
     font-weight: ${({theme})=>theme.fontsWeights.state};
@@ -106,10 +109,12 @@ const GotoDetail=styled.button`
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap:15px;
+    gap:5px;
 
     margin-top:10px;
     padding:18px 38px;
+
+    width: 100%;
 
     background-color: ${({theme})=>theme.colors.white};
     border-radius: 50px;
@@ -118,7 +123,7 @@ const GotoDetail=styled.button`
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 50px;
 
-    font-size: ${({theme})=>theme.fonts.button};
+    font-size: ${({theme})=>theme.fonts.stateButton};
     font-weight: ${({theme})=>theme.fontsWeights.stateButton};
 
 ;`
