@@ -15,12 +15,6 @@ const Background = styled.div`
   .scroll::-webkit-scrollbar {
     display: none;
   }
-
-  .header{
-    background-color: white;
-  }
-    
-  
 `;
 
 const Button = styled.button`
@@ -35,7 +29,7 @@ margin-top: 10px;
 
 const Container = styled.div`
 position: relative;
-margin: 0 30px 30px 30px;
+margin: 32px 30px;
 `
 const Line=styled.div`
   width:360px;
@@ -56,8 +50,8 @@ const WormRightTop = styled.img`
 
 const CloudImage = styled.img`
 position: absolute;
-left: 254px;
-top: -32px;
+left: 250px;
+top: -22px;
 z-index: 1;
 `;
 
@@ -66,7 +60,7 @@ function Home() {
 
   return (
     <Background>
-      <Header className='header'/>
+      <Header/>
       <Container>
         <WormRightTop src={WormRightTopImg}/>  
         <State/> 

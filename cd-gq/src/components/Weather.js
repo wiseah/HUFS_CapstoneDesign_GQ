@@ -6,7 +6,7 @@ width: 330px;
 height: 195px;
 background-color: #3EB7EC;
 border-radius: 35px;
-margin: 36px 30px;
+/* margin: 36px 30px; */
 `;
 
 function Weather() {

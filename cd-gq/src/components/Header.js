@@ -70,7 +70,7 @@ const ModalContent = styled.div`
   flex-direction: column;
   align-items: center;
   width: 428px;
-  height: 400px;
+  height: 410px;
   background-color: ${({ theme }) => theme.colors.darkblue};
   border-radius: 15px;
   box-shadow: 0px 3px 5px #0000002f;
@@ -118,14 +118,17 @@ const IsToggleLocationDiv=styled.div`
   height:40px;
 
   margin-top:23px;
+  margin-left: 5px;
+  margin-right: 5px;
 
   color: ${({ isSelected }) => isSelected ? '#ffffff' : '#14264C'};
-  background-color: ${({ isSelected }) => isSelected ? '#FFAC4A' : '#ffffff'};
+  background-color: ${({ isSelected }) => isSelected ? '#14264C' : '#ffffff'};
+  border: ${({ isSelected }) => isSelected ? '4px solid #ffffff' : 'none'};
   border-radius:25px;
   
   
   font-size:22px;
-  font-weight:600;
+  font-weight:700;
   
   &:hover{
     opacity: 0.7;
@@ -134,6 +137,9 @@ const IsToggleLocationDiv=styled.div`
     
     background-color:${({theme})=>theme.colors.darkblue};
     transition:background-color 0.2s; */
+  }
+  &.background{
+    background-color: #14264C;
   }
 `;
 
@@ -154,12 +160,12 @@ const IsToggleCropDiv=styled.div`
   margin-right: 5px;
 
   color: ${({ isSelected }) => isSelected ? '#ffffff' : '#14264C'};
-  background-color: ${({ isSelected }) => isSelected ? '#FFAC4A' : '#ffffff'};
+  background-color: ${({ isSelected }) => isSelected ? '#14264C' : '#ffffff'};
+  border: ${({ isSelected }) => isSelected ? '4px solid #ffffff' : 'none'};
   border-radius:25px;
   
-  
   font-size:22px;
-  font-weight:600;
+  font-weight:700;
   
   &:hover{
     opacity: 0.7;
@@ -169,12 +175,19 @@ const IsToggleCropDiv=styled.div`
     background-color:${({theme})=>theme.colors.darkblue};
     transition:background-color 0.2s; */
   }
+
+  &.background{
+    background-color: #14264C;
+  }
 `;
 const IsToggledButtonsDiv=styled.div`
   display:flex;
   /* flex-direction:row; */
   /* align-items: center;
   justify-content: space-between; */
+  &.changeButton{
+    margin-bottom: 17px;
+}
 
 `;
 
@@ -188,14 +201,20 @@ cursor: pointer;
 
 width: 100px;
 height: 40px;
-background-color: #E2EAFA;
+background-color: #FFAC4A;
 border-radius:10px;
 
 margin-top:23px;
+margin-left: 5px;
+margin-right: 5px;
 
 font-size:22px;
 font-weight:600;
-color: #14264C;
+color: #ffffff;
+
+&.background{
+    background-color: #14264C;
+  }
 `
 
 function Header() {
@@ -250,15 +269,25 @@ function Header() {
                     <IsToggledHeader>
                         <BsGeoFill size='24px' color='#FFFFFF'/> <span>지역 선택</span>
                     </IsToggledHeader>
+
                     <IsToggledLine />
-                    <IsToggleLocationDiv 
-                    onClick={() => handleLocationSelect('충청도')}
-                    isSelected={tempSelectedLocation === '충청도'}
-                    >충청도</IsToggleLocationDiv>
+                    
+                    <IsToggledButtonsDiv>
+                        <IsToggleLocationDiv className='background'></IsToggleLocationDiv>
+                        <IsToggleLocationDiv 
+                        onClick={() => handleLocationSelect('충청도')}
+                        isSelected={tempSelectedLocation === '충청도'}
+                        >충청도</IsToggleLocationDiv>
+                        <IsToggleLocationDiv className='background'></IsToggleLocationDiv>
+                    </IsToggledButtonsDiv>
+                    
+
                     <IsToggledHeader>
                         <BsQuestionCircleFill size='24px' color='#FFFFFF'/> <span>작물 선택</span>
                     </IsToggledHeader>
+                    
                     <IsToggledLine />
+                    
                     <IsToggledButtonsDiv>
                         <IsToggleCropDiv 
                             onClick={() => handleCropSelect('감귤')}
@@ -282,10 +311,17 @@ function Header() {
                             onClick={() => handleCropSelect('사과')}
                             isSelected={tempSelectedCrop === '사과'}
                         >사과</IsToggleCropDiv>
+                        <IsToggleCropDiv className='background'></IsToggleCropDiv>
                     </IsToggledButtonsDiv>
-                    <ChangeButton onClick={applyChanges}>
-                        변경하기
-                    </ChangeButton>
+                    
+                    <IsToggledButtonsDiv className='changeButton'>
+                        <ChangeButton className='background'></ChangeButton>
+                        <ChangeButton className='background'></ChangeButton>
+                        <ChangeButton onClick={applyChanges}>
+                            변경하기
+                        </ChangeButton>
+                    </IsToggledButtonsDiv>
+                    
                 </ModalContent>
             </ModalBackground>
             
