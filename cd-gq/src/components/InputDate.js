@@ -12,7 +12,6 @@ import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 // import TestDatePicker from '../components/DatePicker';
 // import TestDate from '../components/TestDate';
 // import Date from '../components/Date'
-import ReactDatepicker from './ReactDatepicker';
 
 const InputDiv=styled.button`
   display:flex;
@@ -253,8 +252,7 @@ function InputDate( {onToggle} ) {
         // <TestDate />
         // <ReactDate />
         // <Date />
-        <ReactDatepicker />
-      )}
+      <></>)}
       {!isToggled&&(<></>)}
       
     </>
