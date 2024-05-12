@@ -35,6 +35,14 @@ const theme={
             name:'32px'
         },
         weather:'18px',
+        dealWithPest:{
+            header:'22px',
+            toggleHeader:'18px',
+            toggleContentHeader:'20px',
+            toggleContentText:'16px',
+            downloadNotice:'12px',
+            downloadButton:'16px'
+        }
     },
     fontSizes:{
         input:'20px',
@@ -42,6 +50,8 @@ const theme={
         inputBold:'24px',
         inputSelect:'22px',
         stateHeader:'24px',
+        dealwithpestAdd:'16px',
+        downloadButton:'16px',
     },
     fontsWeights:{
         inputLight:'Light',
@@ -50,6 +60,11 @@ const theme={
         toggle:'Semi Bold',
         stateButton:'Bold',
         state:'Bold',
+        dealWithPest:{
+            header:'Bold',
+            toggleHeader:'Semi Bold',
+            downloadNotice:'Regular'
+        }
     },
     icons:{
         color:'#fff',
