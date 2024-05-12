@@ -9,8 +9,10 @@ import { BsCaretDownFill } from 'react-icons/bs';
 import { BsCaretUpFill } from 'react-icons/bs';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
-import TestDatePicker from '../components/DatePicker';
-import TestDate from '../components/TestDate';
+// import TestDatePicker from '../components/DatePicker';
+// import TestDate from '../components/TestDate';
+// import Date from '../components/Date'
+import ReactDatepicker from './ReactDatepicker';
 
 const InputDiv=styled.button`
   display:flex;
@@ -142,92 +144,92 @@ const MAX_DATE=dayjs().add(60,'days');
 
 const RANGE=6;
 
-const DatePicker=({startDate,endDate, onChange})=>{
-    const [minDate, setMinDate] = useState(MIN_DATE);
-    const [maxDate, setMaxDate] = useState(MAX_DATE);
+// const DatePicker=({startDate,endDate, onChange})=>{
+//     const [minDate, setMinDate] = useState(MIN_DATE);
+//     const [maxDate, setMaxDate] = useState(MAX_DATE);
 
-    // 상난 날짜 선택기 렌더링을 디자인에 맞게 다시 정의합니다.
-    const navigatorRenderer=(focusedDate, changeShownDate,props)=>{
-        const currentDate=dayjs(focusedDate);
-        const minDate=dayjs(props.minDate);
-        const maxDate=dayjs(props.maxDate);
+//     // 상난 날짜 선택기 렌더링을 디자인에 맞게 다시 정의합니다.
+//     const navigatorRenderer=(focusedDate, changeShownDate,props)=>{
+//         const currentDate=dayjs(focusedDate);
+//         const minDate=dayjs(props.minDate);
+//         const maxDate=dayjs(props.maxDate);
 
-        return(
-            <>
-                <DateHeader onMouseUp={(e)=>e.stopPropagation()}>
-                    <Button
-                        onClick={()=>changeShownDate(-1,'monthOffset')}
-                        className={classNames({
-                            disabled:
-                                currentDate.month() === minDate.month()&&
-                                currentDate.year() === minDate.year(),
-                        })}
-                    >
-                     <IoIosArrowBack />   
-                    </Button>
-                    <p>{currentDate.format('YYYY.MM')}</p>
-                    <Button
-                        onClick={()=>changeShownDate(1,'monthOffset')}
-                        className={classNames({
-                            disabled:
-                                currentDate.month() === maxDate.month() &&
-                                currentDate.year() === maxDate.year(),
-                        })}
-                    >
-                        <IoIosArrowForward />
-                    </Button>
-                </DateHeader>
-            </>
-        );
-    };
+//         return(
+//             <>
+//                 <DateHeader onMouseUp={(e)=>e.stopPropagation()}>
+//                     <Button
+//                         onClick={()=>changeShownDate(-1,'monthOffset')}
+//                         className={classNames({
+//                             disabled:
+//                                 currentDate.month() === minDate.month()&&
+//                                 currentDate.year() === minDate.year(),
+//                         })}
+//                     >
+//                      <IoIosArrowBack />   
+//                     </Button>
+//                     <p>{currentDate.format('YYYY.MM')}</p>
+//                     <Button
+//                         onClick={()=>changeShownDate(1,'monthOffset')}
+//                         className={classNames({
+//                             disabled:
+//                                 currentDate.month() === maxDate.month() &&
+//                                 currentDate.year() === maxDate.year(),
+//                         })}
+//                     >
+//                         <IoIosArrowForward />
+//                     </Button>
+//                 </DateHeader>
+//             </>
+//         );
+//     };
 
-    const _onChange=(ranges)=>{
-        if (ranges===undefined) return;
+//     const _onChange=(ranges)=>{
+//         if (ranges===undefined) return;
 
-        const startDate=dayjs(ranges.selection.startDate);
-        const endDate=dayjs(ranges.selection.endDate);
+//         const startDate=dayjs(ranges.selection.startDate);
+//         const endDate=dayjs(ranges.selection.endDate);
 
-        onChange(startDate,endDate);
+//         onChange(startDate,endDate);
 
-        if(startDate.isSame(endDate)){
-            // 범위 입력을 시작하는 경우 , 범이를 RANGE로 제한
-            // 이때, 범위가 MIN_DATE 또는 MAX_DATE를 벗어나지 않도록 합니다
-            const _min=startDate.subtract(RANGE,'days');
-            const _max=startDate.add(RANGE,'days');
+//         if(startDate.isSame(endDate)){
+//             // 범위 입력을 시작하는 경우 , 범이를 RANGE로 제한
+//             // 이때, 범위가 MIN_DATE 또는 MAX_DATE를 벗어나지 않도록 합니다
+//             const _min=startDate.subtract(RANGE,'days');
+//             const _max=startDate.add(RANGE,'days');
 
-            setMinDate(_min<MIN_DATE ? MIN_DATE:_min);
-            setMaxDate(_max>MAX_DATE ? MAX_DATE:_max);
-        }else{
-            //범위 입력을 종료하는 경우, 범위를 원래대로 되돌립니다.
-            setMinDate(MIN_DATE);
-            setMaxDate(MAX_DATE);
-        }
-    };
+//             setMinDate(_min<MIN_DATE ? MIN_DATE:_min);
+//             setMaxDate(_max>MAX_DATE ? MAX_DATE:_max);
+//         }else{
+//             //범위 입력을 종료하는 경우, 범위를 원래대로 되돌립니다.
+//             setMinDate(MIN_DATE);
+//             setMaxDate(MAX_DATE);
+//         }
+//     };
 
-    return(
-        <>
-            <DateRange
-                showMonthAndYearPickers={false}
-                showDateDisplay={false}
-                onChange={_onChange}
-                dragSelectionEnabled={false}
-                ranges={[
-                    {
-                        startDate:startDate.toDate(),
-                        endDate:endDate.toDate(),
-                        key:'selection',
-                    },
-                ]}
-                minDate={minDate.toDate()}
-                maxDate={maxDate.toDate()}
-                local={ko.ko}
-                color={`${({theme})=>theme.colors.darkblue}`}
-                navigatorRenderer={navigatorRenderer}
-                rangeColors={['#FE5858', '#3ecf8e', '#fed14c']}
-            />
-        </>
-    );
-};
+//     return(
+//         <>
+//             <DateRange
+//                 showMonthAndYearPickers={false}
+//                 showDateDisplay={false}
+//                 onChange={_onChange}
+//                 dragSelectionEnabled={false}
+//                 ranges={[
+//                     {
+//                         startDate:startDate.toDate(),
+//                         endDate:endDate.toDate(),
+//                         key:'selection',
+//                     },
+//                 ]}
+//                 minDate={minDate.toDate()}
+//                 maxDate={maxDate.toDate()}
+//                 local={ko.ko}
+//                 color={`${({theme})=>theme.colors.darkblue}`}
+//                 navigatorRenderer={navigatorRenderer}
+//                 rangeColors={['#FE5858', '#3ecf8e', '#fed14c']}
+//             />
+//         </>
+//     );
+// };
 
 function InputDate( {onToggle} ) {
   const [isToggled, setIsToggled]=useState(false);
@@ -248,7 +250,10 @@ function InputDate( {onToggle} ) {
       {isToggled&&(
         // <DatePicker />
         // <TestDatePicker />
-        <TestDate />
+        // <TestDate />
+        // <ReactDate />
+        // <Date />
+        <ReactDatepicker />
       )}
       {!isToggled&&(<></>)}
       
