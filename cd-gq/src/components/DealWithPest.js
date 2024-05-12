@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-// eslint-disable-next-line
 import styled from 'styled-components';
 import { BsFillExclamationCircleFill,BsCaretDownFill ,BsCaretUpFill} from 'react-icons/bs';
 import {BiArchiveIn} from 'react-icons/bi';
-import PestContent from './PestContent';
 
-
+// eslint-disable-next-line
 import {saveAs} from 'file-saver';
 
 const Container=styled.div`
@@ -30,7 +28,6 @@ const Header=styled.div`
   display: flex;
   flex-direction:row;
   align-items: center;
-  /* justify-content: ; */
 
   flex-wrap: wrap;
   gap:1vw;
@@ -49,14 +46,11 @@ const Header=styled.div`
 const ToggleDiv=styled.div`
   display: flex;
   flex-direction: column;
-  /* flex-direction: row; */
   align-items: center;
   justify-content: space-between;
 
   flex-wrap: wrap;
   gap:0px;
-  
-  /* padding:18px; */
 
   cursor: pointer;
 
@@ -66,37 +60,12 @@ const ToggleDiv=styled.div`
 
   font-size: ${({theme})=>theme.fonts.dealWithPest.toggleHeader};
   font-weight: ${({theme})=>theme.fontsWeights.toggle};
-  
-  /* &:hover{
-    background-color: ${({theme})=>theme.colors.white};
-    color:${({theme})=>theme.colors.orange};
-    transition: background-color 0.2s;
-
-    .icon {
-      color:${({theme})=>theme.colors.orange};
-      transition: color 0.2s;
-    }
-  }
-
-  .icon{
-    width:${({theme})=>theme.icons.downFill};
-    height:${({theme})=>theme.icons.downFill};
-
-    margin:auto 0px auto auto;
-    color:${({theme})=>theme.colors.white};
-  }
-
-  .toggleHeader{
-    display: flex;
-    flex-direction: row;
-  } */
 `;
 const ToggleDivHeader=styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   text-align: left;
-  /* justify-content: space-between; */
 
   width:100%;
   padding:18px;
@@ -108,12 +77,12 @@ const ToggleDivHeader=styled.div`
   background-color: transparent;
   border-radius: 50px;
 
-  font-size: ${({theme})=>theme.fonts.dealWithPest.toggleHeader};
-  font-weight: ${({theme})=>theme.fontsWeights.toggle};
+  font-weight: ${({theme})=>theme.fontsWeights.dealWithPest.toggleHeader};
 
   &:hover{
     background-color: ${({theme})=>theme.colors.white} !important;
     color:${({theme})=>theme.colors.orange} !important;
+    box-shadow:0px 3px 5px #0000002f !important;
     transition: background-color 0.2s !important;
 
     .icon {
@@ -122,6 +91,14 @@ const ToggleDivHeader=styled.div`
     }
   }
 
+  .toggleHeader{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    
+    justify-content: space-between !important;
+
+  }
   .icon{
     width:${({theme})=>theme.icons.downFill};
     height:${({theme})=>theme.icons.downFill};
@@ -129,23 +106,20 @@ const ToggleDivHeader=styled.div`
 
     color:${({theme})=>theme.colors.white};
   }
-
-  .toggleHeader{
-    display: flex;
-    flex-direction: row;
-  }
 `;
 
 const ToggleContent=styled.div`
   flex-direction: column;
   padding:1vw;
 
+  width: 100%;
+
   background-color: ${({theme})=>theme.colors.lightorange};
   color:${({theme})=>theme.colors.orange};
   border-radius: 15px;
+  box-shadow:0px 3px 5px #0000002f;
 
   font-weight: ${({theme})=>theme.fontsWeights.toggle};
-  
 `;
 const ToggleContentAdd=styled.div`
   display: flex;
@@ -156,7 +130,9 @@ const ToggleContentAdd=styled.div`
 
   margin-top:1vw;
 
-  background-color: blue;
+  flex-wrap: wrap;
+  gap: 1vw;
+
   color:${({theme})=>theme.colors.orange};
 
   font-size:${({theme})=>theme.fontSizes.dealwithpestAdd};
@@ -169,7 +145,7 @@ const ToggleContentDownload=styled.div`
 
   flex-wrap: wrap;
   gap:0.2vw;
-  /* padding : 7px 36px; */
+  width: 100%;
   padding : 0.5vw;
 
   background-color: ${({theme})=>theme.colors.white};
@@ -183,8 +159,6 @@ const ToggleContentDownload=styled.div`
     margin: 0px;
   }
 `;
-
-
 
 function DealWithPest() {
   const [isToggledPesticide,setIsToggledPesticide]=useState(false);
@@ -212,17 +186,12 @@ function DealWithPest() {
         </Header>
 
         <ToggleDiv onClick={handleTogglePesticide}>
-          {/* <ToggleDivHeader>
-            <div className='toggleHeader'>
-              농약 추천
-              {isToggledPesticide ?
-                <BsCaretUpFill className='icon' />: <BsCaretDownFill className='icon'/>}
-            </div>
-          </ToggleDivHeader> */}
           <ToggleDivHeader 
             style={{ 
               background: isToggledPesticide ? 'white' : 'inherit',
-              color: isToggledPesticide ? '#FF6A4A' : 'inherit' }}>
+              color: isToggledPesticide ? '#FF6A4A' : 'inherit',
+              boxShadow: isToggledPesticide ? '0px 3px 5px #0000002f' : 'inherit'
+              }}>
             <div className='toggleHeader'>
               농약 추천
               {isToggledPesticide ?
@@ -251,28 +220,55 @@ function DealWithPest() {
         </ToggleDiv>
 
         <ToggleDiv onClick={handleToggle01}>
-          대처법 01
-          {isToggled01 ?
-            <BsCaretUpFill className='icon' />: <BsCaretDownFill className='icon'/>}
+          <ToggleDivHeader 
+            style={{ 
+              background: isToggled01 ? 'white' : 'inherit',
+              color: isToggled01 ? '#FF6A4A' : 'inherit' }}>
+            <div className='toggleHeader'>
+              대처법 01
+              {isToggled01 ?
+                  <BsCaretUpFill 
+                    style={{
+                      color:isToggled01 ? '#FF6A4A' : 'inherit'
+                    }}
+                    className='icon' /> :
+                  <BsCaretDownFill className='icon'/>
+              }
+            </div>
+          </ToggleDivHeader>
+          {isToggled01 && (
+            <ToggleContent>
+              대처법 01 컴포넌트 입니다.
+            </ToggleContent>
+          )}
+          {!isToggled01 && (<></>)}
         </ToggleDiv>
-        {isToggled01 && (
-          <ToggleContent>
-            대처법 01 컴포넌트 입니다.
-          </ToggleContent>
-        )}
-        {!isToggled01 && (<></>)}
 
         <ToggleDiv onClick={handleToggle02}>
-          대처법 02
-          {isToggled02 ?
-            <BsCaretUpFill className='icon' />: <BsCaretDownFill className='icon'/>}
+          <ToggleDivHeader 
+            style={{ 
+              background: isToggled02 ? 'white' : 'inherit',
+              color: isToggled02 ? '#FF6A4A' : 'inherit' }}>
+            <div className='toggleHeader'>
+              대처법 02
+              {isToggled02 ?
+                  <BsCaretUpFill 
+                    style={{
+                      color:isToggled02 ? '#FF6A4A' : 'inherit'
+                    }}
+                    className='icon' /> :
+                  <BsCaretDownFill className='icon'/>
+              }
+            </div>
+          </ToggleDivHeader>
+          {isToggled02 && (
+            <ToggleContent>
+              대처법 02 컴포넌트 입니다.
+            </ToggleContent>
+          )}
+          {!isToggled02 && (<></>)}
         </ToggleDiv>
-        {isToggled02 && (
-          <ToggleContent>
-            대처법 02 컴포넌트 입니다.
-          </ToggleContent>
-        )}
-        {!isToggled02 && (<></>)}
+
       </Container>
     </>
   )

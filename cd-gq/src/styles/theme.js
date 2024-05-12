@@ -61,8 +61,8 @@ const theme={
         stateButton:'Bold',
         state:'Bold',
         dealWithPest:{
-            header:'Bold',
-            toggleHeader:'Semi Bold',
+            header:'700',
+            toggleHeader:'500',
             downloadNotice:'Regular'
         }
     },
