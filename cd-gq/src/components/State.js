@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Worm from '../assets/images/wormRightTop.png';
@@ -129,6 +129,23 @@ const GotoDetail=styled.button`
 ;`
 
 function State(){
+    // api 로컬 스토리지에 저장해보기
+    const [stateData,setStateData]=useState({
+        percent:'89%',
+        state:'위험해요!!',
+        name:'파밤나방'
+    })
+    useEffect(()=>{
+        const storedStateData=localStorage.getItem(stateData);
+        if(storedStateData) {
+            setStateData(JSON.parse(storedStateData));
+        }
+        // console.log(stateData);
+    },[])
+    useEffect(()=>{
+        localStorage.setItem('stateData',JSON.stringify(stateData));
+    },[stateData]);
+    // api 코드 끝
 
     return(
         <>
@@ -142,9 +159,27 @@ function State(){
                     <StateBody>
                         <BsFillEmojiDizzyFill className='stateIcon'/>
                         <StateBodyText>
-                            <p className='percent'>89%</p>
-                            <p className='state'>위험해요!!</p>
-                            <p className='name'>파밤나방</p>
+                            <p 
+                                className='percent'
+                                value={stateData.percent}
+                                >
+                                    {/* 89% */}
+                                    {stateData.percent}
+                                    </p>
+                            <p 
+                                className='state'
+                                value={stateData.state}
+                                >
+                                    {/* 위험해요!! */}
+                                    {stateData.state}
+                                    </p>
+                            <p 
+                                className='name'
+                                value={stateData.name}
+                                >
+                                    {/* 파밤나방 */}
+                                    {stateData.name}
+                                    </p>
                         </StateBodyText>
                         <Link to='/detail'>
                             <GotoDetail>

@@ -136,13 +136,15 @@ const IsToggleLocationDiv=styled.div`
   }
 `;
 
-function InputLocation( {onToggle} ) {
+function InputLocation( {onToggle, onClick} ) {
   const [isToggled, setIsToggled]=useState(false);
 
   const handleToggle=()=>{
     setIsToggled(prevState=>!prevState);
     onToggle(!isToggled);  // 토글 상태에 따라 Main에 알림
   };
+
+  // 버튼 선택시 값 저장
   
   return (
     <>
@@ -159,7 +161,9 @@ function InputLocation( {onToggle} ) {
                 <BsGeoFill /> <span>지역 선택</span>
               </IsToggledHeader>
               <IsToggledLine />
-              <IsToggleLocationDiv>충청도</IsToggleLocationDiv>
+              <IsToggleLocationDiv
+                onClick={()=>onClick('충청도')}
+              >충청도</IsToggleLocationDiv>
             </IsToggledDiv>
           )}
           {!isToggled && (<></>)}
