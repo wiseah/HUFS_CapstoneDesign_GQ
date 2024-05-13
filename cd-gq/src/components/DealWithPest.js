@@ -97,6 +97,7 @@ const ToggleDivHeader=styled.div`
     width: 100%;
     
     justify-content: space-between !important;
+    align-items: center;
 
   }
   .icon{

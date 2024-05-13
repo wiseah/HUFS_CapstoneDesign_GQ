@@ -70,10 +70,19 @@ const WormRightBottom = styled.img`
 
 const InsectName = styled.div`
 margin-top: 61px;
+margin-bottom: 34px;
 color: #ffffff;
 font-size: 32px;
 font-weight: 900;
 `;
+
+const Container = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 30px;
+width: 100%
+`
 
 function Detail() {
   const navigate = useNavigate();
@@ -98,8 +107,11 @@ function Detail() {
           </ImgContainer>
           
           <InsectName>톱다리개미허리노린재</InsectName>
-          <PestInformation/>
-          <DealWithPest/>
+          <Container>
+            <PestInformation />
+            <DealWithPest/>
+          </Container>
+          
         </Body>
       </Background>
     </>
