@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import theme from '../styles/theme';
@@ -88,6 +88,66 @@ const Main = () => {
 
   const navigate = useNavigate();  // useNavigate 사용
 
+  // api 연동 전 localStorage로 데이터 확인
+  const [inputData,setInputData]=useState({
+    location:'',
+    crop:'',
+    date:'',
+  })
+  const [location,setLocation]=useState('');
+  const handleLocationButton = (value) => {
+    setLocation(value);
+    setInputData(prevInputData => ({
+      ...prevInputData,
+      location: value
+    }));
+  };
+  
+  const [crop,setCrop]=useState('');
+  const handleCropButton = (value) => {
+    setCrop(value);
+    setInputData(prevInputData => ({
+      ...prevInputData,
+      crop: value
+    }));
+  };
+
+  useEffect(()=>{
+    const storedInputData=localStorage.getItem('inputData');
+    if(storedInputData){
+      setInputData(JSON.parse(storedInputData));
+    }
+  },[]);
+  // 콘솔창에 빈 창이 계속 출력됨 _ 시작
+  useEffect(() => {
+    console.log(location);
+  }, [location]);
+  useEffect(() => {
+    console.log(crop);
+  }, [crop]);
+  // 콘솔창에 빈 창이 계속 출력됨 _ 끝
+  useEffect(()=>{
+    localStorage.setItem('inputData',JSON.stringify(inputData));
+  },[inputData]);
+  // api 연동 코드 끝
+
+  
+  // 초기 inputData 설정을 위한 useEffect
+  useEffect(() => {
+    const storedInputData = localStorage.getItem('inputData');
+    if (storedInputData) {
+      setInputData(JSON.parse(storedInputData));
+    } else {
+      // 로컬 스토리지에 저장된 데이터가 없는 경우 초기 값으로 설정
+      setInputData({
+        location: '',
+        crop: '',
+        date: '',
+      });
+    }
+  }, []);
+
+  
   return (
     <>
       <Background extraHeight={extraHeight}>
@@ -96,13 +156,24 @@ const Main = () => {
         <Title2>G Q</Title2>
         <Components>
           <ComponentsContainer>
-            <InputLocation onToggle={isOpen => toggleHeight(isOpen, 243)} />
+            <InputLocation 
+              onToggle={isOpen => toggleHeight(isOpen, 243)} 
+              onClick={handleLocationButton}
+              value={inputData.location}
+            >{location}</InputLocation>
           </ComponentsContainer>
           <ComponentsContainer>
-            <InputCrop onToggle={isOpen => toggleHeight(isOpen, 243)} />  
+            <InputCrop 
+              onToggle={isOpen => toggleHeight(isOpen, 243)} 
+              onClick={handleCropButton}
+              value={inputData.crop}
+              />  
           </ComponentsContainer> 
           <ComponentsContainer>
-            <InputDate onToggle={isOpen => toggleHeight(isOpen, 348)} />
+            <InputDate 
+              onToggle={isOpen => toggleHeight(isOpen, 348)} 
+              value={inputData.date}
+              />
           </ComponentsContainer>   
         </Components>
         <ButtonDiv>

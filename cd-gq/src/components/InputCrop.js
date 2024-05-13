@@ -138,7 +138,7 @@ const IsToggleCropDiv=styled.div`
   }
 `;
 
-function InputCrop( {onToggle} ) {
+function InputCrop( {onToggle, onClick} ) {
   const [isToggled, setIsToggled]=useState(false);
 
   const handleToggle=()=>{
@@ -161,13 +161,23 @@ function InputCrop( {onToggle} ) {
               </IsToggledHeader>
               <IsToggledLine />
               <IsToggledButtonsDiv>
-                <IsToggleCropDiv>감귤</IsToggleCropDiv>
-                <IsToggleCropDiv>고추</IsToggleCropDiv>
-                <IsToggleCropDiv>콩</IsToggleCropDiv>
+                <IsToggleCropDiv
+                  onClick={()=>onClick('감귤')}
+                >감귤</IsToggleCropDiv>
+                <IsToggleCropDiv
+                  onClick={()=>onClick('고추')}
+                >고추</IsToggleCropDiv>
+                <IsToggleCropDiv
+                  onClick={()=>onClick('콩')}
+                >콩</IsToggleCropDiv>
               </IsToggledButtonsDiv>  
               <IsToggledButtonsDiv>
-                <IsToggleCropDiv>딸기</IsToggleCropDiv>
-                <IsToggleCropDiv>사과</IsToggleCropDiv>
+                <IsToggleCropDiv
+                  onClick={()=>onClick('딸기')}
+                >딸기</IsToggleCropDiv>
+                <IsToggleCropDiv
+                  onClick={()=>onClick('사과')}
+                >사과</IsToggleCropDiv>
               </IsToggledButtonsDiv>
             </IsToggledDiv>
         )}
