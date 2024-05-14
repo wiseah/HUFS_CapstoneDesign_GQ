@@ -38,12 +38,12 @@ const InputDiv=styled.button`
   }
 
   &:hover {
-    color : ${({theme})=>theme.colors.darkblue};
-    transition: color 0.2s;
-    background-color:${({theme})=>theme.hoverColors.main};
-    transition: background-color 0.2s;
+    color : ${({theme})=>theme.colors.darkblue} !important;
+    transition: color 0.2s !important;
+    background-color:${({theme})=>theme.hoverColors.main} !important;
+    transition: background-color 0.2s !important;
     
-    font-weight:${({theme})=>theme.fontsWeights.inputBold};
+    font-weight:${({theme})=>theme.fontsWeights.inputBold} !important;
 
   }
 
@@ -145,6 +145,46 @@ function InputCrop( {onToggle, onClick} ) {
     setIsToggled(prevState=>!prevState);
     onToggle(!isToggled);  // 토글 상태에 따라 Main에 알림
   };
+  
+  const [selectCrop, setSelectCrop]=useState(false);
+
+  const [selectTangerine,setSelectTangerine]=useState(false);
+  const [selectPapper,setSelectPepper]=useState(false);
+  const [selectBean,setSelectBean]=useState(false);
+  const [selectStrawberry,setSelectStrawberry]=useState(false);
+  const [selectApple,setSelectApple]=useState(false);
+
+  const handleCrop=()=>{
+    setSelectCrop(!selectCrop);
+  };
+  const handleTangerin=()=>{
+    if(setSelectCrop===true){
+      setSelectTangerine(true);
+    }else{
+      setSelectTangerine(false);
+    }
+  };
+  const handlePapper=()=>{
+    if(setSelectCrop===true){
+      setSelectPepper(true);
+    }else{
+      setSelectPepper(false);
+    }
+  };
+  const handleBean=()=>{
+    if(setSelectCrop===true){
+      setSelectBean(true);
+    }else{
+      setSelectBean(false);
+    }
+  };
+  const handleApple=()=>{
+    if(setSelectCrop===true){
+      setSelectApple(true);
+    }else{
+      setSelectApple(false);
+    }
+  };
 
   return (
     <>
@@ -160,15 +200,26 @@ function InputCrop( {onToggle, onClick} ) {
                 <BsGeoFill /> <span>지역 선택</span>
               </IsToggledHeader>
               <IsToggledLine />
-              <IsToggledButtonsDiv>
-                <IsToggleCropDiv
+              <IsToggledButtonsDiv onClick={handleCrop}>
+                {/* <IsToggleCropDiv
                   onClick={()=>onClick('감귤')}
-                >감귤</IsToggleCropDiv>
+                  style={selectTangerine && {backgroundColor:'#14264C', color:'white'}}
+                >
+                  감귤
+                  </IsToggleCropDiv> */}
+                <IsToggleCropDiv
+                    onClick={() => onClick('감귤')}
+                    style={selectTangerine ? { backgroundColor: '#14264C', color: 'white' } : null}
+                >
+                  감귤
+                </IsToggleCropDiv>
+
                 <IsToggleCropDiv
                   onClick={()=>onClick('고추')}
                 >고추</IsToggleCropDiv>
                 <IsToggleCropDiv
                   onClick={()=>onClick('콩')}
+                  // style={{ backgroundColor: selectCrop === '콩' ? 'white' : '#14264c' }}
                 >콩</IsToggleCropDiv>
               </IsToggledButtonsDiv>  
               <IsToggledButtonsDiv>
