@@ -90,7 +90,6 @@ const ToggleDivHeader=styled.div`
       transition: color 0.2s !important;
     }
   }
-
   .toggleHeader{
     display: flex;
     flex-direction: row;
