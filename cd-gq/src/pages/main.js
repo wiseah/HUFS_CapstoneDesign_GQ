@@ -94,6 +94,7 @@ const Main = () => {
     crop:'',
     date:'',
   })
+
   const [location,setLocation]=useState('');
   const handleLocationButton = (value) => {
     setLocation(value);
@@ -112,6 +113,14 @@ const Main = () => {
     }));
   };
 
+  const [date,setDate]=useState('');
+  const handleDateButton=(value)=>{
+    setDate(value);
+    setInputData(prevInputData=>({
+      ...prevInputData,
+      date:value
+    }));
+  };
   useEffect(()=>{
     const storedInputData=localStorage.getItem('inputData');
     if(storedInputData){
@@ -119,12 +128,12 @@ const Main = () => {
     }
   },[]);
   // 콘솔창에 빈 창이 계속 출력됨 _ 시작
-  useEffect(() => {
-    console.log(location);
-  }, [location]);
-  useEffect(() => {
-    console.log(crop);
-  }, [crop]);
+  // useEffect(() => {
+  //   console.log(location);
+  // }, [location]);
+  // useEffect(() => {
+  //   console.log(crop);
+  // }, [crop]);
   // 콘솔창에 빈 창이 계속 출력됨 _ 끝
   useEffect(()=>{
     localStorage.setItem('inputData',JSON.stringify(inputData));
@@ -172,7 +181,10 @@ const Main = () => {
           <ComponentsContainer>
             <InputDate 
               onToggle={isOpen => toggleHeight(isOpen, 348)} 
+              // onClick={handleDateButton}
               value={inputData.date}
+              // value={InputDate.selectedDate}
+              onChange={handleDateButton}
               />
           </ComponentsContainer>   
         </Components>

@@ -1,17 +1,15 @@
-import React,{useState} from 'react';
+import React,{useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
 import classNames from 'classnames';
-import dayjs from 'dayjs';
-import { DateRange } from 'react-date-range';
-import { ko } from 'react-date-range/dist/locale';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import moment from 'moment';
+import {format} from 'date-fns';
 
 import { BsCaretDownFill } from 'react-icons/bs';
 import { BsCaretUpFill } from 'react-icons/bs';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
-// import TestDatePicker from '../components/DatePicker';
-// import TestDate from '../components/TestDate';
-// import Date from '../components/Date'
 
 const InputDiv=styled.button`
   display:flex;
@@ -59,185 +57,193 @@ const InputDiv=styled.button`
   }
 `
 
-// const InputDateHeader=styled.div`
-//     display:flex;
-//     align-items:center;
-//     justify-content:center;
+const ToggleDiv=styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 
-//     color:${({theme})=>theme.colors.darkblue};
-//     font-size:${({theme})=>theme.fontSizes.inputHeader};
-//     font-weight:${({theme})=>theme.fontsWeights.inputBold};
-
-//     padding:16px;
-// `;
-
-// const InputDateButton=styled.button`
-//     display:flex;
-//     align-items:center;
-//     justify-content:center;
-    
-//     padding:4px;
-//     background:none;
-//     border:none;
-//     border-radius:50%;
-    
-//     cursor:pointer;
-
-//     &:hover:{
-//         background-color:${({theme})=>theme.colors.darkblue};
-//     }
-
-//     & > svg {
-//         width:24px;
-//         heigt:24px;
-//     }
-
-//     &.disabled{
-//         color:rgba(20, 38, 76,0.3);
-//         pointer-events:none;
-//     }
-// `;
-
-const DateHeader=styled.div`
-    padding:16px 16px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    color:rgba(254,88,88,1);
-    font-size:${({theme})=>theme.divSizes.inputHeader};
-    font-weight:700;
+  background-color: ${({theme})=>theme.colors.white};
+  border-radius:25px;
+  box-shadow:0px 3px 5px #0000002f;
 `;
+const ToggleCalendar=styled(Calendar)`
+  border: none;
+  outline: none;
+  padding: 5% 2% 5% 2%;
+  background-color: transparent;
 
-const Button=styled.button`
-    padding:4px;
+  .react-calendar__tile--active {
+    background-color: transparent;
+    color: white;
+  }
 
-    background:none;
-    border:none;
-    border-radius:50%;
+  .react-calendar_navigation{
+    display: flex;
+  }
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+  .react-calendar_navigation button{
+    min-width: 24px;
+    background-color: none;
+  }
 
-    cursor:pointer;
+  .react-calendar_navigation button:disabled {
+    background-color: ${({theme})=>theme.colors.green};
+    transition: all 0.1s;
+  }
+
+  .react-calendar__navigation button:enabled:hover,
+  .react-calendar__navigation button:enabled:focus{
+    background-color: transparent;
+    font-size: 16px;
+    font-weight: bold;
+
+    transition: all 0.1s;
+  }
+
+  .react-calender__month-view__weekdays {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0%.5vw;
+    transition: all 0.1s;
+  }
+
+  .react-calendar__year-view .react-calendar__tile,
+  .react-calendar__decade-view .react-calendar__tile,
+  .react-calendar__century-view .react-calendar__tile {
+    color: ${({theme})=>theme.colors.darkblue};
+  }
+
+  .react-calendar__year-view .react-calendar__tile--now,
+  .react-calendar__decade-view .react-calendar__tile--now,
+  .react-calendar__century-view .react-calendar__tile--now {
+    color: ${({theme})=>theme.colors.green};
+    font-size: 16px;
+    font-weight: bold;
+    background-color: ${({theme})=>theme.colors.lightgreen};
+    border-radius: 50%;
+    transition: all 0.1s;
 
     &:hover{
-        background-color:${({theme})=>theme.colors.darkblue};
+    color: ${({theme})=>theme.colors.white};
+    background-color: ${({theme})=>theme.colors.green};
+    transition: all 0.1s;
     }
+  }
 
-    & > svg {
-        width:24px;
-        height:24px;
-    }
+  .react-calendar__year-view .react-calendar__tile--now:hover,
+  .react-calendar__decade-view .react-calendar__tile--now:hover,
+  .react-calendar__century-view .react-calendar__tile--now:hover {
+    color: ${({theme})=>theme.colors.white};
+    font-size: 16px;
+    font-weight: bold;
+    background-color: ${({theme})=>theme.colors.green};
+    border-radius: 50%;
+    transition: all 0.1s;
+  }
 
-    &.disabled{
-        color:rgba(20, 38, 76,0.3);
-        pointer-events:none;
-    }
+  .react-calendar__year-view .react-calendar__tile:hover,
+  .react-calendar__decade-view .react-calendar__tile:hover,
+  .react-calendar__century-view .react-calendar__tile:hover {
+    color: ${({theme})=>theme.colors.white};
+    background-color: ${({theme})=>theme.colors.darkblue};
+    transition: all 0.1s;
+  }
+
+  .react-calendar__year-view .react-calendar__tile:focus,
+  .react-calendar__decade-view .react-calendar__tile:focus,
+  .react-calendar__century-view .react-calendar__tile:focus {
+    color: ${({theme})=>theme.colors.white};
+    background-color: ${({theme})=>theme.colors.darkblue};
+    transition: all 0.1s;
+  }
+
+  .react-calendar__tile--hasActive {
+    color: #ffffff;
+    background-color: rgba(20, 38, 76, 0.19);
+    border-radius: 50%;
+    transition: all 0.1s;
+  }
+
+  .react-calendar__tile--now {
+    color: #ffffff;
+    background-color: ${({theme})=>theme.colors.lightgreen};
+    border-radius: 50%;
+    transition: all 0.1s;
+  }
+
+  .react-calendar__tile--now:hover {
+    color: #ffffff;
+    background-color: ${({theme})=>theme.colors.green};
+    border-radius: 50%;
+    font-weight: bold;
+    transition: all 0.1s;
+  }
+
+  .react-calendar__tile--hasActive:enabled:hover,
+  .react-calendar__tile--hasActive:enabled:focus {
+    color: #ffffff;
+    background-color: rgba(20, 38, 76, 0.19);
+    font-weight: bold;
+    transition: all 0.1s;
+  }
+
+  .react-calendar__tile{
+    color: ${({theme})=>theme.colors.darkblue};
+    border-radius: 100%;
+    font-size: 16px;
+  }
+
+  .react-calendar__tile--active {
+    color: #ffffff;
+    background-color: ${({theme})=>theme.colors.darkblue};
+    border-radius: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.1s;
+  }
+
+  .react-calendar__tile--active:enabled:hover,
+  .react-calendar__tile--active:enabled:focus {
+    color: #ffffff;
+    background-color: ${({theme})=>theme.colors.darkblue};
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.1s;
+  }
+
+  .react-calendar__tile--hasActive{
+    color: #ffffff;
+    background-color: ${({theme})=>theme.colors.darkblue};
+    transition: all 0.1s;
+  }
 `;
 
-const MIN_DATE=dayjs().add(1,'days');
-const MAX_DATE=dayjs().add(60,'days');
-
-const RANGE=6;
-
-// const DatePicker=({startDate,endDate, onChange})=>{
-//     const [minDate, setMinDate] = useState(MIN_DATE);
-//     const [maxDate, setMaxDate] = useState(MAX_DATE);
-
-//     // 상난 날짜 선택기 렌더링을 디자인에 맞게 다시 정의합니다.
-//     const navigatorRenderer=(focusedDate, changeShownDate,props)=>{
-//         const currentDate=dayjs(focusedDate);
-//         const minDate=dayjs(props.minDate);
-//         const maxDate=dayjs(props.maxDate);
-
-//         return(
-//             <>
-//                 <DateHeader onMouseUp={(e)=>e.stopPropagation()}>
-//                     <Button
-//                         onClick={()=>changeShownDate(-1,'monthOffset')}
-//                         className={classNames({
-//                             disabled:
-//                                 currentDate.month() === minDate.month()&&
-//                                 currentDate.year() === minDate.year(),
-//                         })}
-//                     >
-//                      <IoIosArrowBack />   
-//                     </Button>
-//                     <p>{currentDate.format('YYYY.MM')}</p>
-//                     <Button
-//                         onClick={()=>changeShownDate(1,'monthOffset')}
-//                         className={classNames({
-//                             disabled:
-//                                 currentDate.month() === maxDate.month() &&
-//                                 currentDate.year() === maxDate.year(),
-//                         })}
-//                     >
-//                         <IoIosArrowForward />
-//                     </Button>
-//                 </DateHeader>
-//             </>
-//         );
-//     };
-
-//     const _onChange=(ranges)=>{
-//         if (ranges===undefined) return;
-
-//         const startDate=dayjs(ranges.selection.startDate);
-//         const endDate=dayjs(ranges.selection.endDate);
-
-//         onChange(startDate,endDate);
-
-//         if(startDate.isSame(endDate)){
-//             // 범위 입력을 시작하는 경우 , 범이를 RANGE로 제한
-//             // 이때, 범위가 MIN_DATE 또는 MAX_DATE를 벗어나지 않도록 합니다
-//             const _min=startDate.subtract(RANGE,'days');
-//             const _max=startDate.add(RANGE,'days');
-
-//             setMinDate(_min<MIN_DATE ? MIN_DATE:_min);
-//             setMaxDate(_max>MAX_DATE ? MAX_DATE:_max);
-//         }else{
-//             //범위 입력을 종료하는 경우, 범위를 원래대로 되돌립니다.
-//             setMinDate(MIN_DATE);
-//             setMaxDate(MAX_DATE);
-//         }
-//     };
-
-//     return(
-//         <>
-//             <DateRange
-//                 showMonthAndYearPickers={false}
-//                 showDateDisplay={false}
-//                 onChange={_onChange}
-//                 dragSelectionEnabled={false}
-//                 ranges={[
-//                     {
-//                         startDate:startDate.toDate(),
-//                         endDate:endDate.toDate(),
-//                         key:'selection',
-//                     },
-//                 ]}
-//                 minDate={minDate.toDate()}
-//                 maxDate={maxDate.toDate()}
-//                 local={ko.ko}
-//                 color={`${({theme})=>theme.colors.darkblue}`}
-//                 navigatorRenderer={navigatorRenderer}
-//                 rangeColors={['#FE5858', '#3ecf8e', '#fed14c']}
-//             />
-//         </>
-//     );
-// };
-
-function InputDate( {onToggle} ) {
+function InputDate( {onToggle,
+  onChange,
+  // onClick,
+  value
+} ) {
   const [isToggled, setIsToggled]=useState(false);
+  const [selectedDate, setSelectedDate]=useState(value);
+
 
   const handleToggle=()=>{
     setIsToggled(prevState=>!prevState);
-    // onToggle 호출 시 isOpen과 함께 높이값도 전달
-    onToggle(!isToggled);  // 토글 상태에 따라 Main에 알림과 함께 높이값도 전달
+    onToggle(!isToggled); 
   };
+
+  const handleDateChange=(date)=>{
+    const formattedDate=format(date,'yyy-MM-dd');
+    setSelectedDate(formattedDate);
+
+    //부모 컴포넌트 선택 날짜 전달
+    // onToggle(isToggled, formattedDate);
+    onChange(formattedDate);
+  };
+
   return (
     <>
       <InputDiv onClick={handleToggle}>
@@ -247,14 +253,17 @@ function InputDate( {onToggle} ) {
         </button>
       </InputDiv>
       {isToggled&&(
-        // <DatePicker />
-        // <TestDatePicker />
-        // <TestDate />
-        // <ReactDate />
-        // <Date />
-      <></>)}
+        <ToggleDiv>
+          <ToggleCalendar
+            selected={selectedDate?new Date(selectedDate):null}
+            onChange={handleDateChange}
+            dateFormate='yyyy-MM-dd'
+            formatDay={(locale,date)=>moment(date).format("DD")}
+          />
+          날짜 : {selectedDate}
+        </ToggleDiv>
+      )}
       {!isToggled&&(<></>)}
-      
     </>
   )
 }
