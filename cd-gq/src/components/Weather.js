@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import { BsFillExclamationCircleFill, BsThermometerSun, BsFillDropletFill, BsCloudFog2Fill } from 'react-icons/bs';
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
@@ -71,7 +72,7 @@ const WeatherBox = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 96px;
-  width: 80px;
+  width: 86px;
 
   .weatherIcon {
     margin: 0;
@@ -128,12 +129,101 @@ function SamplePrevArrow(props) {
   );
 }
 
-function Weather() {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, '0');
-  const day = String(today.getDate()).padStart(2, '0');
 
+function Weather() {
+  const today = new Date(); // 오늘 날짜 정보 
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1); // 오늘 날짜에서 1을 빼서 어제 날짜로 설정
+
+  const todayYear = today.getFullYear();
+  const todayMonth = String(today.getMonth() + 1).padStart(2, '0');
+  const todayDay = String(today.getDate()).padStart(2, '0');
+
+  const yesterdayYear = yesterday.getFullYear();
+  const yesterdayMonth = String(yesterday.getMonth() + 1).padStart(2, '0');
+  const yesterdayDay = String(yesterday.getDate()).padStart(2, '0');
+
+  //기상청 API
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const fetchData = async () => {
+    try {
+      setError(null);
+      setData(null);
+      setLoading(true);
+  //cors걸리면 https://cors-anywhere.herokuapp.com/작성하기 + https://cors-anywhere.herokuapp.com/corsdemo접속해서 권한부여해야함.   
+  const response = await axios.get('https://cors-anywhere.herokuapp.com/https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst', {
+    params: {
+      ServiceKey: process.env.REACT_APP_API_KEY,
+      pageNo: 1,
+      numOfRows: 290, //290개가 하루치 양
+      dataType: 'JSON',
+      base_date: 	yesterdayYear + yesterdayMonth + yesterdayDay, // 어제 날짜 사용(어제날짜로 불러야 그 다음날 0000시부터 뜸)
+      base_time: 2300,
+      nx: 76,
+      ny: 114,
+    }
+  });
+      setData(response.data);
+      
+    } catch(e) {
+      setError(e);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    console.log(data); // 데이터 출력
+  }, [data]); // data가 변경될 때마다 실행
+  
+  if(loading) return <div>Loading...</div>;
+  if(error)   return <div>Error...</div>;
+  if(!data)   return null;
+
+    // 필요한 정보 추출
+    const extractedData = data.response.body.items.item.reduce((acc, cur) => {
+      if (cur.category === 'TMX') acc.TMX = cur.fcstValue; //최고기온
+      if (cur.category === 'TMN') acc.TMN = cur.fcstValue; //최저기온
+      if (cur.fcstTime === '0000') {
+        if (cur.category === 'REH') acc.REH = cur.fcstValue; //습도 %
+        if (cur.category === 'VEC') acc.VEC = cur.fcstValue; //풍향 deg(각도로 값을 주기 때문에 문자열로 바꿔줘야함)
+        if (cur.category === 'WSD') acc.WSD = cur.fcstValue; //풍속 m/s
+        if (cur.category === 'POP') acc.POP = cur.fcstValue; //강수확률 %
+      }
+      return acc;
+    }, {});
+
+    // 풍향을 방위로 변환하는 함수
+  const getDirection = (degree) => {
+    if (degree >= 0 && degree <= 45) {
+      return '북';
+    } else if (degree > 45 && degree <= 90) {
+      return '북동';
+    } else if (degree > 90 && degree <= 135) {
+      return '동';
+    } else if (degree > 135 && degree <= 180) {
+      return '동남';
+    } else if (degree > 180 && degree <= 225) {
+      return '남';
+    } else if (degree > 225 && degree <= 270) {
+      return '남서';
+    } else if (degree > 270 && degree <= 315) {
+      return '서';
+    } else {
+      return '북서';
+    }}
+
+  // const url='https://apihub.kma.go.kr/api/typ01/url/kma_sfctm2.php?tm=202211300900&stn=0&help=1&authKey=y8EqW37PT8aBKlt-z-_GOQ?authKey=${API_KEY}'
+  // const response = await fetch(url)
+  // const data = await response.json() //내가 쓸 내용만 data에 저장하겠다.
+
+  //캐러셀 구현
   const settings = {
     dots: true,
     infinite: false,
@@ -148,7 +238,7 @@ function Weather() {
     <Container>
       <Header>
         <BsFillExclamationCircleFill className='headerIcon' />
-        <span className='headerText'>{year}.{month}.{day} 날씨</span>
+        <span className='headerText'>{todayYear}.{todayMonth}.{todayDay} 날씨</span>
       </Header>
       <Line />
       <Body>
@@ -157,29 +247,29 @@ function Weather() {
             <WeatherBox>
               <Text>온도</Text>
               <BsThermometerSun className='weatherIcon' />
-              <Text>26 / 13</Text>
+              <Text>{extractedData.TMX} / {extractedData.TMN}</Text>
             </WeatherBox>
             <WeatherBox>
               <Text>습도</Text>
               <BsFillDropletFill className='weatherIcon' />
-              <Text>17%</Text>
+              <Text>{extractedData.REH}%</Text>
             </WeatherBox>
             <WeatherBox>
               <Text>풍향</Text>
               <BsCloudFog2Fill className='weatherIcon' />
-              <Text>북서</Text>
+              <Text>{getDirection(parseFloat(extractedData.VEC))}풍</Text> {/* 풍향 방위로 변환 */}
             </WeatherBox>
           </SlideContainer>
           <SlideContainer>
             <WeatherBox>
               <Text>풍속</Text>
               <BsFillDropletFill className='weatherIcon' />
-              <Text>26 / 13</Text>
+              <Text>{extractedData.WSD}m/s</Text>
             </WeatherBox>
             <WeatherBox>
-              <Text>강우여부</Text>
+              <Text>강수여부</Text>
               <BsFillDropletFill className='weatherIcon' />
-              <Text>17%</Text>
+              <Text>{extractedData.POP}%</Text>
             </WeatherBox>
           </SlideContainer>
         </Slider>
