@@ -30,7 +30,6 @@ const Header=styled.div`
   flex-direction:row;
   align-items: center;
 
-  flex-wrap: wrap;
   gap:1vw;
 
   .headerIcon{
@@ -39,7 +38,7 @@ const Header=styled.div`
   }
 
   .headerText{
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
     letter-spacing: 0.1vw;
     color: #14264C;

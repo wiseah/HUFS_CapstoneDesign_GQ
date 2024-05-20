@@ -69,10 +69,7 @@ function Home() {
       <Container>
         <CloudImage src={CloudImg}/>
         <Weather/>
-      </Container>
-      
-      <Button onClick={() => navigate('/')}>사이트맵으로 가기</Button>
-      
+      </Container>      
     </Background>
   )
 }
