@@ -263,7 +263,7 @@ function Weather() {
           <SlideContainer>
             <WeatherBox>
               <Text>풍속</Text>
-              <BsFillDropletFill className='weatherIcon' />
+              <BsThermometerSun className='weatherIcon' />
               <Text>{extractedData.WSD}m/s</Text>
             </WeatherBox>
             <WeatherBox>
