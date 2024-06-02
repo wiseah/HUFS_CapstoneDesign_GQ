@@ -6,6 +6,8 @@ import {BiArchiveIn} from 'react-icons/bi';
 // eslint-disable-next-line
 import {saveAs} from 'file-saver';
 
+import TestDownload from '../components/TestDownload';
+
 const Container=styled.div`
   display: flex;
   flex-direction: column;
@@ -110,7 +112,7 @@ const ToggleDivHeader=styled.div`
 
 const ToggleContent=styled.div`
   flex-direction: column;
-  padding:1vw;
+  padding:1.5vw;
 
   width: 100%;
 
@@ -137,16 +139,16 @@ const ToggleContentAdd=styled.div`
 
   font-size:${({theme})=>theme.fontSizes.dealwithpestAdd};
 `;
-const ToggleContentDownload=styled.div`
+const ToggleContentDownload=styled.button`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 
   flex-wrap: wrap;
-  gap:0.2vw;
+  gap:0.1vw;
   width: 100%;
-  padding : 0.5vw;
+  padding : 0.4vw;
 
   background-color: ${({theme})=>theme.colors.white};
   color:${({theme})=>theme.colors.orange};
@@ -158,6 +160,7 @@ const ToggleContentDownload=styled.div`
   .icon{
     margin: 0px;
   }
+
 `;
 
 function DealWithPest() {
@@ -177,6 +180,10 @@ function DealWithPest() {
     setIsToggled02(prevState => !prevState);
 };
 
+  const handleButton=()=>{
+    setIsToggledPesticide(prevState => prevState);
+  }
+
   return (
     <>
       <Container>
@@ -184,7 +191,6 @@ function DealWithPest() {
           <BsFillExclamationCircleFill className='headerIcon'/>
           <span className='headerText'>톱다리개미허리노린재 대처법</span>
         </Header>
-
         <ToggleDiv onClick={handleTogglePesticide}>
           <ToggleDivHeader 
             style={{ 
@@ -209,16 +215,12 @@ function DealWithPest() {
               농약 컴포넌트 입니다.
               <ToggleContentAdd>
                 <p>추가 정보는 아래 엑셀을 다운 받아서 확인해주세요!</p>
-                <ToggleContentDownload>
-                  <BiArchiveIn className='icon'/>
-                  <span>농약 제품 목록 엑셀 다운 받기</span>
-                </ToggleContentDownload>
+                <TestDownload onClick={handleButton}/>
               </ToggleContentAdd>
             </ToggleContent>
           )}
           {!isToggledPesticide && (<></>)}
         </ToggleDiv>
-
         <ToggleDiv onClick={handleToggle01}>
           <ToggleDivHeader 
             style={{ 
@@ -243,7 +245,6 @@ function DealWithPest() {
           )}
           {!isToggled01 && (<></>)}
         </ToggleDiv>
-
         <ToggleDiv onClick={handleToggle02}>
           <ToggleDivHeader 
             style={{ 
@@ -268,7 +269,6 @@ function DealWithPest() {
           )}
           {!isToggled02 && (<></>)}
         </ToggleDiv>
-
       </Container>
     </>
   )
