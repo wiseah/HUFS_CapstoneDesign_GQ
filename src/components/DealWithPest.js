@@ -139,37 +139,27 @@ const ToggleContentAdd=styled.div`
 
   font-size:${({theme})=>theme.fontSizes.dealwithpestAdd};
 `;
-const ToggleContentDownload=styled.button`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-
-  flex-wrap: wrap;
-  gap:0.1vw;
-  width: 100%;
-  padding : 0.4vw;
-
-  background-color: ${({theme})=>theme.colors.white};
-  color:${({theme})=>theme.colors.orange};
-
-  border-radius: 15px;
-
-  font-size: ${({theme})=>theme.fontSizes.downloadButton};
-
-  .icon{
-    margin: 0px;
-  }
-
-`;
 
 function DealWithPest() {
   const [isToggledPesticide,setIsToggledPesticide]=useState(false);
+  const [isHandleDownloadButton,setIsHandleDownloadButton]=useState(false);
   const [isToggled01, setIsToggled01] = useState(false);
   const [isToggled02, setIsToggled02] = useState(false);
 
   const handleTogglePesticide = () => {
+    setIsToggledPesticide(prevState => !prevState);
+    if (isToggledPesticide === false && isHandleDownloadButton === false){
+      setIsToggledPesticide(prevState => prevState);
+      setIsHandleDownloadButton(prevState=>!prevState);
+    } 
+    else if (isToggledPesticide === false && isHandleDownloadButton === true){
       setIsToggledPesticide(prevState => !prevState);
+      setIsHandleDownloadButton(prevState =>! prevState);
+    }
+    else if (isToggledPesticide === true && isHandleDownloadButton === true){
+      setIsToggledPesticide(prevState => !prevState);
+      setIsHandleDownloadButton(prevState =>! prevState);
+    }
   };
 
   const handleToggle01 = () => {
@@ -181,7 +171,7 @@ function DealWithPest() {
 };
 
   const handleButton=()=>{
-    setIsToggledPesticide(prevState => prevState);
+    setIsHandleDownloadButton(prevState => !prevState);
   }
 
   return (
@@ -215,7 +205,9 @@ function DealWithPest() {
               농약 컴포넌트 입니다.
               <ToggleContentAdd>
                 <p>추가 정보는 아래 엑셀을 다운 받아서 확인해주세요!</p>
-                <TestDownload onClick={handleButton}/>
+                <TestDownload 
+                  onClick={handleButton}
+                  />
               </ToggleContentAdd>
             </ToggleContent>
           )}
