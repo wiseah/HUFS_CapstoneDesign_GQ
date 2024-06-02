@@ -260,7 +260,6 @@ function InputDate( {onToggle,
             dateFormate='yyyy-MM-dd'
             formatDay={(locale,date)=>moment(date).format("DD")}
           />
-          날짜 : {selectedDate}
         </ToggleDiv>
       )}
       {!isToggled&&(<></>)}
