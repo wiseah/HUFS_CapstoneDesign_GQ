@@ -14,7 +14,7 @@ import { BsFillHouseDoorFill } from "react-icons/bs";
 
 const Background = styled.div`
   background: linear-gradient(to bottom, #FF6A4A 27%, #FFFFFF 100%);
-  height: 844px;
+  /* height: 844px; */
   scrollbar-width: none;
   .scroll::-webkit-scrollbar {
     display: none;
