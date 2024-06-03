@@ -8,6 +8,7 @@ import Weather from '../components/HomePage/Weather';
 
 import WormRightTopImg from '../assets/images/wormRightTop.png';
 import CloudImg from '../assets/images/cloud.png'
+import Weather1 from '../components/HomePage/Weather copy';
 
 const Background = styled.div`
   display: flex;
