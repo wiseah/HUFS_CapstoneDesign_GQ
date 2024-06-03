@@ -1,13 +1,16 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
-import { BiChevronLeft } from "react-icons/bi";
-import { BsFillHouseDoorFill } from "react-icons/bs";
+
+import PestInformation from '../components/DetailPage/PestInformation';
+import DealWithPest from '../components/DetailPage/DealWithPest';
+
 import InsectImg from '../assets/images/InsectTestImg.png';
 import WormLeftTopImg from '../assets/images/wormLeftTop.png';
 import WormRightBottomImg from '../assets/images/wormRightBottom.png';
-import PestInformation from '../components/PestInformation';
-import DealWithPest from '../components/DealWithPest';
+
+import { BiChevronLeft } from "react-icons/bi";
+import { BsFillHouseDoorFill } from "react-icons/bs";
 
 const Background = styled.div`
   background: linear-gradient(to bottom, #FF6A4A 27%, #FFFFFF 100%);

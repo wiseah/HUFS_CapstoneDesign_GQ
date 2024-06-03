@@ -1,6 +1,6 @@
 import React from 'react'
-import State from '../components/State';
-import TestDownload from '../components/TestDownload';
+import State from '../components/HomePage/State';
+import TestDownload from '../components/DetailPage/TestDownload';
 
 function Test1() {
   return (

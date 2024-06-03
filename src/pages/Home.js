@@ -1,11 +1,13 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
-import Header from '../components/Header';
-import State from '../components/State'
+
+import Header from '../components/HomePage/Header';
+import State from '../components/HomePage/State'
+import Weather from '../components/HomePage/Weather';
+
 import WormRightTopImg from '../assets/images/wormRightTop.png';
 import CloudImg from '../assets/images/cloud.png'
-import Weather from '../components/Weather';
 
 const Background = styled.div`
   display: flex;
