@@ -6,7 +6,7 @@ import {BiArchiveIn} from 'react-icons/bi';
 // eslint-disable-next-line
 import {saveAs} from 'file-saver';
 
-import TestDownload from './TestDownload';
+import DownloadFile from './DownloadFile';
 
 const Container=styled.div`
   display: flex;
@@ -205,7 +205,7 @@ function DealWithPest() {
               농약 컴포넌트 입니다.
               <ToggleContentAdd>
                 <p>추가 정보는 아래 엑셀을 다운 받아서 확인해주세요!</p>
-                <TestDownload 
+                <DownloadFile
                   onClick={handleButton}
                   />
               </ToggleContentAdd>

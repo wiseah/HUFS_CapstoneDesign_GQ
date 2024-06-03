@@ -85,7 +85,7 @@ flex-direction: column;
 align-items: center;
 gap: 30px;
 width: 100%
-`
+`;
 
 function Detail() {
   const navigate = useNavigate();
@@ -119,6 +119,6 @@ function Detail() {
       </Background>
     </>
   )
-}
+};
 
 export default Detail
