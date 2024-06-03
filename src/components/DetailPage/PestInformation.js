@@ -5,8 +5,7 @@ import styled from 'styled-components'
 import data from '../../db/PestInfo.json';
 
 import PestImg from '../../assets/images/pestTestImg1.png';
-
-import { BsFillQuestionCircleFill, BsDot, BsCaretDownFill ,BsCaretUpFill } from "react-icons/bs";
+import { BsFillQuestionCircleFill, BsDot, BsCaretDownFill ,BsCaretUpFill, BsRecordFill } from "react-icons/bs";
 
 
 const Container = styled.div`
@@ -138,7 +137,6 @@ const ToggleDivHeader=styled.div`
 `;
 
 const ToggleContent=styled.div`
-  flex-direction: column;
   padding:1vw;
 
   width: 100%;
@@ -147,9 +145,32 @@ const ToggleContent=styled.div`
   border-radius: 25px;
   box-shadow:0px 3px 5px #0000002f;
 
-  display: flex;
+  /* display: flex;
+  flex-direction: column;
   justify-content: center; 
-  align-items: center; 
+  align-items: center;  */
+`;
+const TextBox=styled.div`
+display: flex;
+flex-direction: row;
+justify-content: left;
+color: #14264C;
+font-size: 18px;
+font-weight: 500;
+margin: 20px;
+
+.icon{
+  margin:0px;
+}
+
+.text{
+  margin-left: 13px;
+}
+`
+const PestImgContainer2=styled.div`
+display: flex;
+justify-content: center; 
+align-items: center; 
 `;
 const PestImgContainer=styled.div`
 background-color: #14264C;
@@ -165,6 +186,7 @@ align-items: center;
 const PestImage = styled.img`
   width: 240px;
   height: 240px;
+  border-radius: 20px;
 `;
 
 
@@ -203,10 +225,33 @@ function PestInformation() {
           </ToggleDivHeader>
           {isToggled01 && (
             <ToggleContent>
-              해충이미지
-              <PestImgContainer>
-                <PestImage src={PestImg}/>
-              </PestImgContainer>
+              <TextBox>
+                <BsRecordFill className='icon'/> <div className='text'>알 상태 사진</div>
+              </TextBox>
+              <PestImgContainer2>
+                <PestImgContainer>
+                  <PestImage src="/images/PestEgg.png"/>
+                </PestImgContainer>
+              </PestImgContainer2>
+
+              <TextBox>
+                <BsRecordFill className='icon'/> <div className='text'>약충 상태 사진</div>
+              </TextBox>
+              <PestImgContainer2>
+                <PestImgContainer>
+                  <PestImage src="/images/PestLarva.png"/>
+                </PestImgContainer>
+              </PestImgContainer2>
+
+              <TextBox>
+                <BsRecordFill className='icon'/> <div className='text'>성충 상태 사진</div>
+              </TextBox>
+              <PestImgContainer2>
+                <PestImgContainer>
+                  <PestImage src="/images/PestAdult.png"/>
+                </PestImgContainer>
+              </PestImgContainer2>
+              
             </ToggleContent>
           )}
           {!isToggled01 && (<></>)}
