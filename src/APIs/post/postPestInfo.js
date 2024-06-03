@@ -3,7 +3,7 @@ import axiosInstance from "../axiosinstance";
 async function postPestInfo(pestName, selectedCrop){
     try{
         const response = await axiosInstance.post(
-            `/predictors/api/get/pestinfo/`,
+            `predictors/api/get/pestinfo/`,
             {
                 pestName: pestName,
                 selectedCrop: selectedCrop

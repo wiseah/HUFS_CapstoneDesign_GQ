@@ -10,6 +10,7 @@ import InputDate from '../components/MainPage/InputDate';
 import LogoImg from '../assets/images/LogoImg.png';
 
 import { BsArrowRightCircleFill } from "react-icons/bs";
+import postSelect from '../APIs/post/postSelect';
 
 
 const Background = styled.div`
@@ -98,66 +99,106 @@ const Main = () => {
     date:'',
   })
 
-  const [location,setLocation]=useState('');
   const handleLocationButton = (value) => {
-    setLocation(value);
     setInputData(prevInputData => ({
       ...prevInputData,
       location: value
     }));
   };
   
-  const [crop,setCrop]=useState('');
   const handleCropButton = (value) => {
-    setCrop(value);
     setInputData(prevInputData => ({
       ...prevInputData,
       crop: value
     }));
   };
 
-  const [date,setDate]=useState('');
   const handleDateButton=(value)=>{
-    setDate(value);
     setInputData(prevInputData=>({
       ...prevInputData,
       date:value
     }));
   };
-  useEffect(()=>{
-    const storedInputData=localStorage.getItem('inputData');
-    if(storedInputData){
-      setInputData(JSON.parse(storedInputData));
+
+  const handleConfirmClick = async () => {
+    try {
+      const response = await postSelect(inputData.location, inputData.crop, inputData.date); // postSelect 함수 호출
+      console.log("선택된 값들을 API에 전달:", response);
+      navigate('/home')
+      
+    } catch (error) {
+      alert('지역/작물/날짜가 선택되지 않았습니다.');
     }
-  },[]);
-  // 콘솔창에 빈 창이 계속 출력됨 _ 시작
-  // useEffect(() => {
-  //   console.log(location);
-  // }, [location]);
-  // useEffect(() => {
-  //   console.log(crop);
-  // }, [crop]);
-  // 콘솔창에 빈 창이 계속 출력됨 _ 끝
-  useEffect(()=>{
-    localStorage.setItem('inputData',JSON.stringify(inputData));
-  },[inputData]);
-  // api 연동 코드 끝
+  }
+  // const [location,setLocation]=useState('');
+  // const handleLocationButton = (value) => {
+  //   setLocation(value);
+  //   setInputData(prevInputData => ({
+  //     ...prevInputData,
+  //     location: value
+  //   }));
+  // };
+  
+  // const [crop,setCrop]=useState('');
+  // const handleCropButton = (value) => {
+  //   setCrop(value);
+  //   setInputData(prevInputData => ({
+  //     ...prevInputData,
+  //     crop: value
+  //   }));
+  // };
+
+  // const [date,setDate]=useState('');
+  // const handleDateButton=(value)=>{
+  //   setDate(value);
+  //   setInputData(prevInputData=>({
+  //     ...prevInputData,
+  //     date:value
+  //   }));
+  // };
+  // useEffect(()=>{
+  //   const storedInputData=localStorage.getItem('inputData');
+  //   if(storedInputData){
+  //     setInputData(JSON.parse(storedInputData));
+  //   }
+  // },[]);
+  // // 콘솔창에 빈 창이 계속 출력됨 _ 시작
+  // // useEffect(() => {
+  // //   console.log(location);
+  // // }, [location]);
+  // // useEffect(() => {
+  // //   console.log(crop);
+  // // }, [crop]);
+  // // 콘솔창에 빈 창이 계속 출력됨 _ 끝
+  // useEffect(()=>{
+  //   localStorage.setItem('inputData',JSON.stringify(inputData));
+  // },[inputData]);
+  // // api 연동 코드 끝
 
   
-  // 초기 inputData 설정을 위한 useEffect
-  useEffect(() => {
-    const storedInputData = localStorage.getItem('inputData');
-    if (storedInputData) {
-      setInputData(JSON.parse(storedInputData));
-    } else {
-      // 로컬 스토리지에 저장된 데이터가 없는 경우 초기 값으로 설정
-      setInputData({
-        location: '',
-        crop: '',
-        date: '',
-      });
-    }
-  }, []);
+  // // 초기 inputData 설정을 위한 useEffect
+  // useEffect(() => {
+  //   const storedInputData = localStorage.getItem('inputData');
+  //   if (storedInputData) {
+  //     setInputData(JSON.parse(storedInputData));
+  //   } else {
+  //     // 로컬 스토리지에 저장된 데이터가 없는 경우 초기 값으로 설정
+  //     setInputData({
+  //       location: '',
+  //       crop: '',
+  //       date: '',
+  //     });
+  //   }
+  // }, []);
+
+  // const handleConfirmClick = async () => {
+  //   try{
+  //     const response = await postSelect()
+  //   } catch {
+  //     alert('지역/작물/날씨가 선택이 안됐습니다.');
+  //   }
+
+  // }
 
   
   return (
@@ -172,29 +213,27 @@ const Main = () => {
               onToggle={isOpen => toggleHeight(isOpen, 243)} 
               onClick={handleLocationButton}
               value={inputData.location}
-            >{location}</InputLocation>
+            />
           </ComponentsContainer>
           <ComponentsContainer>
-            <InputCrop 
+          <InputCrop 
               onToggle={isOpen => toggleHeight(isOpen, 243)} 
               onClick={handleCropButton}
               value={inputData.crop}
-              />  
+            /> 
           </ComponentsContainer> 
           <ComponentsContainer>
-            <InputDate 
+          <InputDate 
               onToggle={isOpen => toggleHeight(isOpen, 348)} 
-              // onClick={handleDateButton}
               value={inputData.date}
-              // value={InputDate.selectedDate}
               onChange={handleDateButton}
-              />
+            />
           </ComponentsContainer>   
         </Components>
         <ButtonDiv>
-          <CheckButton onClick={() => navigate('/home')}>
+          <CheckButton  onClick={handleConfirmClick}>
             <IconTextContainer>
-              <BsArrowRightCircleFill size="28px" style={{ marginRight: '10px'}} />
+              <BsArrowRightCircleFill size="28px" style={{ marginRight: '10px'}}/>
               확인하기
             </IconTextContainer>
           </CheckButton>
