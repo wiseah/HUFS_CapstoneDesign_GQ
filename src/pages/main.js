@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import theme from '../styles/theme';
+
+import InputLocation from '../components/MainPage/InputLocation';
+import InputCrop from '../components/MainPage/InputCrop';
+import InputDate from '../components/MainPage/InputDate';
+
 import LogoImg from '../assets/images/LogoImg.png';
-import InputLocation from '../components/InputLocation';
-import InputCrop from '../components/InputCrop';
-import InputDate from '../components/InputDate';
+
 import { BsArrowRightCircleFill } from "react-icons/bs";
 
 

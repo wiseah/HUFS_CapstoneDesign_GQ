@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Worm from '../assets/images/wormRightTop.png';
+import Worm from '../../assets/images/wormRightTop.png';
+import StateData from '../../db/State.json';
+
 // 경보 아이콘
 import {BsFillExclamationTriangleFill} from 'react-icons/bs';
 //화살표 아이콘
@@ -11,13 +13,11 @@ import {
     //제일 위험
     BsFillEmojiDizzyFill,
     //위험
-    // BsFillEmojiAngryFill,
+    BsFillEmojiAngryFill,
     //주의
-    // BsFillEmojiNeutralFill,
+    BsFillEmojiNeutralFill,
     //양호
-    // BsFillEmojiSmileFill,
-    //안전
-    // BsFillEmojiHeartEyesFill
+    BsFillEmojiSmileFill
 } from 'react-icons/bs';
 //확인하기 버튼 아이콘
 import {BsArrowRightCircleFill} from 'react-icons/bs';
@@ -98,7 +98,8 @@ const StateBodyText=styled.div`
     .state{
         font-size: ${({theme})=>theme.fonts.component.state};
     }
-    .name{
+    .pestName{
+        text-align: center;
         font-size: ${({theme})=>theme.fonts.component.name};
     }
 `;
@@ -130,22 +131,53 @@ const GotoDetail=styled.button`
 
 function State(){
     // api 로컬 스토리지에 저장해보기
-    const [stateData,setStateData]=useState({
-        percent:'89%',
-        state:'위험해요!!',
-        name:'파밤나방'
-    })
-    useEffect(()=>{
-        const storedStateData=localStorage.getItem(stateData);
-        if(storedStateData) {
-            setStateData(JSON.parse(storedStateData));
-        }
-        // console.log(stateData);
-    },[])
-    useEffect(()=>{
-        localStorage.setItem('stateData',JSON.stringify(stateData));
-    },[stateData]);
+    // const [stateData,setStateData]=useState({
+    //     percent:'89%',
+    //     state:'위험해요!!',
+    //     name:'파밤나방'
+    // })
+    // useEffect(()=>{
+    //     const storedStateData=localStorage.getItem(stateData);
+    //     if(storedStateData) {
+    //         setStateData(JSON.parse(storedStateData));
+    //     }
+    //     // console.log(stateData);
+    // },[])
+    // useEffect(()=>{
+    //     localStorage.setItem('stateData',JSON.stringify(stateData));
+    // },[stateData]);
     // api 코드 끝
+
+    let state='';
+    let statePercent=`${StateData.percent}`;
+    let stateIcon='';
+    // percent에 따른 state 상태 결정
+    const setState=()=>{
+        if (statePercent>74 && statePercent<101){
+            state='위험해요!'
+        } else if (statePercent>49 && statePercent<75){
+            state='주의가 필요해요!'
+        } else if (statePercent>24 && statePercent<50){
+            state='조심해볼까요?'
+        } else if (statePercent>0 && statePercent<25){
+            state='괜찮아요!'
+        }
+    }
+
+    // state 상태에 따른 stateIcon 변경
+    const setStateIcon=()=>{
+        if (state === '위험해요!'){
+            stateIcon='BsFillEmojiDizzyFill'
+        } else if (state === '주의가 필요해요!'){
+            stateIcon='BsFillEmojiAngryFill'
+        } else if (state === '조심해볼까요?'){
+            stateIcon='BsFillEmojiNeutralFill'
+        } else if (state === '괜찮아요!'){
+            stateIcon='BsFillEmojiSmileFill'
+        } else{
+            console.error('stateIcon error')
+        }
+    }
 
     return(
         <>
@@ -157,28 +189,32 @@ function State(){
                 <Body>
                     <BsCaretLeftFill className='arrowIcon'/>
                     <StateBody>
-                        <BsFillEmojiDizzyFill className='stateIcon'/>
+                        <BsFillEmojiDizzyFill 
+                            className='stateIcon'/>
                         <StateBodyText>
                             <p 
                                 className='percent'
-                                value={stateData.percent}
+                                // json Data
+                                value={StateData.percent}
                                 >
-                                    {/* 89% */}
-                                    {stateData.percent}
+                                    {StateData.percent} %
                                     </p>
                             <p 
                                 className='state'
-                                value={stateData.state}
+                                // json Data
+                                // value={StateData.state}
+
+                                // test code
+                                value={state}
                                 >
-                                    {/* 위험해요!! */}
-                                    {stateData.state}
+                                    {/* {StateData.state} */}
+                                    {state}
                                     </p>
                             <p 
-                                className='name'
-                                value={stateData.name}
+                                className='pestName'
+                                value={StateData.pestName}
                                 >
-                                    {/* 파밤나방 */}
-                                    {stateData.name}
+                                    {StateData.pestName}
                                     </p>
                         </StateBodyText>
                         <Link to='/detail'>

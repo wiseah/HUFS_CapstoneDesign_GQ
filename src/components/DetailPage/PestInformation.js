@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components'
-import { BsFillQuestionCircleFill, BsDot, BsCaretDownFill ,BsCaretUpFill } from "react-icons/bs";
-import data from '../db/PestInfo.json'; // JSON 데이터를 임포트합니다.
 
-import PestImg from '../assets/images/pestTestImg1.png';
+// JSON 데이터를 임포트합니다.
+import data from '../../db/PestInfo.json';
+
+import PestImg from '../../assets/images/pestTestImg1.png';
+
+import { BsFillQuestionCircleFill, BsDot, BsCaretDownFill ,BsCaretUpFill } from "react-icons/bs";
+
 
 const Container = styled.div`
 /* width: 388px; */

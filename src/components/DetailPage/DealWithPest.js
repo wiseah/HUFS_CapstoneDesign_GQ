@@ -6,7 +6,7 @@ import {BiArchiveIn} from 'react-icons/bi';
 // eslint-disable-next-line
 import {saveAs} from 'file-saver';
 
-import TestDownload from '../components/TestDownload';
+import TestDownload from './TestDownload';
 
 const Container=styled.div`
   display: flex;
