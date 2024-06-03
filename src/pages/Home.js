@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
 
@@ -60,13 +60,14 @@ z-index: 1;
 
 function Home() {
   const navigate=useNavigate();
+  const [selectedCrop, setSelectedCrop] = useState('콩');
 
   return (
     <Background>
-      <Header/>
+      <Header selectedCrop={selectedCrop} setSelectedCrop={setSelectedCrop}/>
       <Container>
         <WormRightTop src={WormRightTopImg}/>  
-        <State/> 
+        <State selectedCrop={selectedCrop}/> 
       </Container>
       <Line/>
       <Container>

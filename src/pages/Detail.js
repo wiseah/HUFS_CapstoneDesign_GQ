@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
 
@@ -11,6 +11,7 @@ import WormRightBottomImg from '../assets/images/wormRightBottom.png';
 
 import { BiChevronLeft } from "react-icons/bi";
 import { BsFillHouseDoorFill } from "react-icons/bs";
+import postPestInfo from '../APIs/post/postPestInfo';
 
 const Background = styled.div`
   background: linear-gradient(to bottom, #FF6A4A 27%, #FFFFFF 100%);
@@ -84,12 +85,27 @@ display: flex;
 flex-direction: column;
 align-items: center;
 gap: 30px;
-width: 100%
+width: 100%;
 `;
 
 function Detail() {
   const navigate = useNavigate();
   
+// API 호출 함수
+const fetchPestInfo = async () => {
+  try {
+    const pestData = await postPestInfo();
+    console.log("해충 데이터:", pestData); 
+  } catch(error) {
+    console.error("데이터를 가져오는 중 오류 발생:", error);
+  }
+};
+
+// 컴포넌트가 마운트될 때 API 호출
+useEffect(() => {
+  fetchPestInfo();
+}, []);
+
   return (
     <>
       <Background>
@@ -121,4 +137,4 @@ function Detail() {
   )
 };
 
-export default Detail
+export default Detail;
