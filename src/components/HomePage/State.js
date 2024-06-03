@@ -209,11 +209,15 @@ function State({selectedCrop}) {
   }, [statePercent]);
 
   // selectedCrop 변경 시, 호출 할 함수 
-  useEffect(async () => {
-    try{
-     
-    }
-    
+  useEffect( () => {
+    const fetchStateInfo = async () => {
+      try{
+        const stateData = await getStateInfo();
+        console.log("state 데이터:", stateData)
+      } catch (error) {
+        console.log("앨범 정보를 가져오는 데 실패했습니다:", error);
+      } 
+    };
   }, [selectedCrop])
 
   const IconComponent = stateIcon;
@@ -269,18 +273,3 @@ function State({selectedCrop}) {
     </>
   );
 }
-
-import axiosInstance from "../axiosinstance";
-
-async function getStateInfo(){
-    try{
-        const response = await axiosInstance.get(
-            `/weather/api/get/maininfo/`,
-        
-        )
-        return response.data;
-    } catch (error) {
-        console.log('오류 발생', error);
-    }
-}
-export default getStateInfo;
