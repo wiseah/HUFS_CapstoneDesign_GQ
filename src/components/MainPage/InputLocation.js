@@ -134,18 +134,28 @@ const IsToggleLocationDiv=styled.div`
     background-color:${({theme})=>theme.colors.darkblue};
     transition:background-color 0.2s;
   }
+
+  &.active {
+    color: white;
+    background-color: ${({ theme }) => theme.colors.darkblue};
+  }
 `;
 
 function InputLocation( {onToggle, onClick} ) {
   const [isToggled, setIsToggled]=useState(false);
+  const [selectedLocation,setSelectedLocation]=useState(null);
 
   const handleToggle=()=>{
     setIsToggled(prevState=>!prevState);
     onToggle(!isToggled);  // 토글 상태에 따라 Main에 알림
   };
 
+  const handleLocationClick=(Location)=>{
+    setSelectedLocation(Location);
+    onClick(Location);
+  }
+
   // 버튼 선택시 값 저장
-  
   return (
     <>
           <InputDiv onClick={handleToggle}>
@@ -162,7 +172,9 @@ function InputLocation( {onToggle, onClick} ) {
               </IsToggledHeader>
               <IsToggledLine />
               <IsToggleLocationDiv
-                onClick={()=>onClick('충청도')}
+                // onClick={()=>onClick('충청도')}
+                onClick={()=>handleLocationClick('충청도')}
+                className={selectedLocation === '충청도' ? 'active' : ''}
               >충청도</IsToggleLocationDiv>
             </IsToggledDiv>
           )}

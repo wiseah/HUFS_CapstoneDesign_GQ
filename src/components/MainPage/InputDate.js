@@ -229,7 +229,6 @@ function InputDate( {onToggle,
   const [isToggled, setIsToggled]=useState(false);
   const [selectedDate, setSelectedDate]=useState(value);
 
-
   const handleToggle=()=>{
     setIsToggled(prevState=>!prevState);
     onToggle(!isToggled); 
