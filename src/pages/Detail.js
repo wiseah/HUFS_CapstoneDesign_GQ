@@ -88,18 +88,18 @@ gap: 30px;
 width: 100%;
 `;
 
-function Detail() {
+function Detail({ pestName, selectedCrop }) { // props로 pestName과 selectedCrop을 받아옴
   const navigate = useNavigate();
   
-// API 호출 함수
-const fetchPestInfo = async () => {
-  try {
-    const pestData = await postPestInfo();
-    console.log("해충 데이터:", pestData); 
-  } catch(error) {
-    console.error("데이터를 가져오는 중 오류 발생:", error);
-  }
-};
+  // API 호출 함수
+  const fetchPestInfo = async () => {
+    try {
+      const pestData = await postPestInfo(pestName, selectedCrop); // props로 받아온 값 사용
+      console.log("해충 데이터:", pestData); 
+    } catch(error) {
+      console.error("데이터를 가져오는 중 오류 발생:", error);
+    }
+  };
 
 // 컴포넌트가 마운트될 때 API 호출
 useEffect(() => {
