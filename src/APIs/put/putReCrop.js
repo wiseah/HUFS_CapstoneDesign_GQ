@@ -1,11 +1,10 @@
 import axiosInstance from "../axiosinstance";
 
-async function postPestInfo(pestName, selectedCrop){
+async function putReCrop(selectedCrop){
     try{
-        const response = await axiosInstance.post(
-            `/predictors/api/get/pestinfo/`,
+        const response = await axiosInstance.put(
+            `/predictors/api/update/location/`,
             {
-                pestName: pestName,
                 selectedCrop: selectedCrop
             }
         )
@@ -14,4 +13,5 @@ async function postPestInfo(pestName, selectedCrop){
         console.log('오류 발생', error);
     }
 }
-export default postPestInfo;
+export default putReCrop;
+

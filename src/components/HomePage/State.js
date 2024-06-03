@@ -187,7 +187,7 @@ const iconMap = {
   };
   
 
-function State() {
+function State({selectedCrop}) {
   const [state, setState] = useState('');
   const [stateIcon, setStateIcon] = useState(null);
   const statePercent = parseInt(StateData.percent);
@@ -206,6 +206,10 @@ function State() {
     setState(newState);
     setStateIcon(iconMap[newState]);
   }, [statePercent]);
+
+  // selectedCrop 변경 시, 호출 할 함수 
+  useEffect(() => {
+  }, [selectedCrop])
 
   const IconComponent = stateIcon;
   //캐러셀 구현

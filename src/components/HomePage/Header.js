@@ -217,37 +217,46 @@ color: #ffffff;
   }
 `
 
-function Header() {
-    const navigate = useNavigate();
+function Header({selectedCrop, setSelectedCrop}) {
+  const navigate = useNavigate();
 
-    const [isSearchToggled, setIsSearchToggled] = useState(false);
-    const [selectedLocation, setSelectedLocation] = useState('충청도');
-    const [selectedCrop, setSelectedCrop] = useState('콩');
-    // 임시 상태 추가
-    const [tempSelectedLocation, setTempSelectedLocation] = useState(selectedLocation);
-    const [tempSelectedCrop, setTempSelectedCrop] = useState(selectedCrop);
+  const [isSearchToggled, setIsSearchToggled] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState('충청도');
+  // 임시 상태 추가
+  const [tempSelectedLocation, setTempSelectedLocation] = useState(selectedLocation);
+  const [tempSelectedCrop, setTempSelectedCrop] = useState(selectedCrop);
 
-    const toggleSearch = () => {
-        setIsSearchToggled(prev => !prev);
-        // 모달을 연다면 임시 선택을 현재 선택으로 초기화
-        setTempSelectedLocation(selectedLocation);
-        setTempSelectedCrop(selectedCrop);
-    };
+  const toggleSearch = () => {
+    setIsSearchToggled(prev => !prev);
+    // 모달을 연다면 임시 선택을 현재 선택으로 초기화
+    setTempSelectedLocation(selectedLocation);
+    setTempSelectedCrop(selectedCrop);
+  };
 
-    const handleLocationSelect = (location) => {
-        setTempSelectedLocation(location); // 임시 위치 저장
-    };
+  const handleLocationSelect = (location) => {
+    setTempSelectedLocation(location); // 임시 위치 저장
+  };
 
-    const handleCropSelect = (crop) => {
-        setTempSelectedCrop(crop); // 임시 작물 저장
-    };
+  const handleCropSelect = (crop) => {
+    setTempSelectedCrop(crop); // 임시 작물 저장
+  };
 
-    const applyChanges = () => {
-        // 임시 선택을 실제 선택으로 적용
-        setSelectedLocation(tempSelectedLocation);
-        setSelectedCrop(tempSelectedCrop);
-        setIsSearchToggled(false); // 모달 닫기
-    };
+  const applyChanges = () => {
+  
+    // 임시 선택을 실제 선택으로 적용
+    setSelectedLocation(tempSelectedLocation);
+    setSelectedCrop(tempSelectedCrop);
+    setIsSearchToggled(false); // 모달 닫기
+  };
+  // const applyChanges = async () => {
+  //   try{
+
+  //   }
+  //   // 임시 선택을 실제 선택으로 적용
+  //   setSelectedLocation(tempSelectedLocation);
+  //   setSelectedCrop(tempSelectedCrop);
+  //   setIsSearchToggled(false); // 모달 닫기
+  // }; 
 
   return (
     <>
