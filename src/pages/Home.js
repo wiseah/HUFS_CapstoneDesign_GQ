@@ -121,6 +121,7 @@ function Home() {
       "percent":infoResult.percentages[bugs.at(nowData)],
       "pestName":bugs.at(nowData)
     })
+    localStorage.setItem("pestName",bugs.at(nowData));
   }, [nowData])
 
   return (
@@ -128,7 +129,7 @@ function Home() {
       <Header selectedCrop={selectedCrop} setSelectedCrop={setSelectedCrop}/>
       <Container>
         <WormRightTop src={WormRightTopImg}/>  
-        <State selectedCrop={stateData} nowData={nowData} setNowData={setNowData}/> 
+        <State stateData={stateData} nowData={nowData} setNowData={setNowData}/> 
       </Container>
       <Line/>
       <Container>
