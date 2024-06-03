@@ -21,6 +21,7 @@ import {
 // 확인하기 버튼 아이콘
 import { BsArrowRightCircleFill } from 'react-icons/bs';
 import Slider from 'react-slick';
+import getStateInfo from '../../APIs/get/getStateInfo';
 
 const Container = styled.div`
   display: flex;
@@ -208,7 +209,11 @@ function State({selectedCrop}) {
   }, [statePercent]);
 
   // selectedCrop 변경 시, 호출 할 함수 
-  useEffect(() => {
+  useEffect(async () => {
+    try{
+     
+    }
+    
   }, [selectedCrop])
 
   const IconComponent = stateIcon;
@@ -265,3 +270,17 @@ function State({selectedCrop}) {
   );
 }
 
+import axiosInstance from "../axiosinstance";
+
+async function getStateInfo(){
+    try{
+        const response = await axiosInstance.get(
+            `/weather/api/get/maininfo/`,
+        
+        )
+        return response.data;
+    } catch (error) {
+        console.log('오류 발생', error);
+    }
+}
+export default getStateInfo;
