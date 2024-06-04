@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { json, useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
 
@@ -90,6 +90,11 @@ width: 100%;
 
 function Detail() { // props로 pestName과 selectedCrop을 받아옴
   const navigate = useNavigate();
+  const [inputData, setInputData] = useState({
+    "pest": {},
+    "management": {},
+    "pesticide_info": []
+  });
   
   // API 호출 함수
   const fetchPestInfo = async () => {
@@ -97,6 +102,7 @@ function Detail() { // props로 pestName과 selectedCrop을 받아옴
     const selectedCrop = JSON.parse(localStorage.getItem("inputData")).crop;
     try {
       const pestData = await postPestInfo(pestName, selectedCrop); // props로 받아온 값 사용
+      setInputData(pestData);
       console.log("해충 데이터:", pestData); 
     } catch(error) {
       console.error("데이터를 가져오는 중 오류 발생:", error);
@@ -127,9 +133,9 @@ useEffect(() => {
           <WormRightBottom src={WormRightBottomImg}/>
           </ImgContainer>
           
-          <InsectName>톱다리개미허리노린재</InsectName>
+          <InsectName>{inputData.pest.pestName || "정보 수신 중"}</InsectName>
           <Container>
-            <PestInformation />
+            <PestInformation inputData={inputData.pest}/>
             <DealWithPest/>
           </Container>
           
