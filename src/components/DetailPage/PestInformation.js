@@ -190,7 +190,7 @@ const PestImage = styled.img`
 `;
 
 
-function PestInformation() {
+function PestInformation({inputData}) {
   const [isToggled01, setIsToggled01] = useState(false);
 
   const handleToggle01 = () => {
@@ -201,7 +201,7 @@ function PestInformation() {
     <Container>
         <Header>
           <BsFillQuestionCircleFill className='headerIcon'/>
-          <span className='headerText'>{data.pestName} 정보</span>
+          <span className='headerText'>{inputData.pestName} 정보</span>
         </Header>
 
         {data.details.map((detail) => (
@@ -230,7 +230,7 @@ function PestInformation() {
               </TextBox>
               <PestImgContainer2>
                 <PestImgContainer>
-                  <PestImage src="/images/4/PestEgg.png"/>
+                  <PestImage src={`/images/${inputData.pestId - 1}/PestEgg.png`}/>
                 </PestImgContainer>
               </PestImgContainer2>
 
@@ -239,7 +239,7 @@ function PestInformation() {
               </TextBox>
               <PestImgContainer2>
                 <PestImgContainer>
-                  <PestImage src="/images/4/PestLarva.png"/>
+                  <PestImage src={`/images/${inputData.pestId - 1}/PestLarva.png`}/>
                 </PestImgContainer>
               </PestImgContainer2>
 
@@ -248,7 +248,7 @@ function PestInformation() {
               </TextBox>
               <PestImgContainer2>
                 <PestImgContainer>
-                  <PestImage src="/images/4/PestAdult.png"/>
+                  <PestImage src={`/images/${inputData.pestId - 1}/PestAdult.png`}/>
                 </PestImgContainer>
               </PestImgContainer2>
               
