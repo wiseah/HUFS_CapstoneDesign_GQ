@@ -67,10 +67,10 @@ const PestInfo = styled.div`
     letter-spacing: 0.1vw;
     color: #14264C;
     margin-left: 11px;
-    max-width: 246px; /* 너비를 270px로 제한 */
+    max-width: 260px; /* 너비를 270px로 제한 */
 
     word-wrap: normal; /* 기본적으로 공백에서 줄바꿈 */
-    word-break: keep-all; /* 단어 중간에 줄바꿈하지 않음 */
+    /* word-break: keep-all; 단어단위로 줄바꿈(단어 중간에 줄바꿈하지 않음) */
     line-height: 1.2; /* 라인 간격을 1.2로 설정 */
   }
 `
@@ -144,7 +144,7 @@ const ToggleContent=styled.div`
   background-color: #E2EAFA;
   border-radius: 25px;
   box-shadow:0px 3px 5px #0000002f;
-
+  padding-bottom: 20px;
   /* display: flex;
   flex-direction: column;
   justify-content: center; 
@@ -156,7 +156,7 @@ flex-direction: row;
 justify-content: left;
 color: #14264C;
 font-size: 18px;
-font-weight: 500;
+font-weight: 600;
 margin: 20px;
 
 .icon{
@@ -195,7 +195,11 @@ function PestInformation({inputData}) {
 
   const handleToggle01 = () => {
     setIsToggled01(prevState => !prevState);
-};
+  };
+   // inputData와 inputData.pestInfo가 정의되어 있는지 확인합니다.
+  if (!inputData || !inputData.pestInfo) {
+  return <div>데이터를 불러오는 중입니다...</div>;
+  }
 
   return (
     <Container>
@@ -204,12 +208,12 @@ function PestInformation({inputData}) {
           <span className='headerText'>{inputData.pestName} 정보</span>
         </Header>
 
-        {data.details.map((detail) => (
-          <PestInfo key={detail}>
-            <BsDot className='dotIcon'/>
-            <span className='infoText'>{detail}</span>
-          </PestInfo>
-        ))}
+        {inputData.pestInfo.map((detail, index) => (
+        <PestInfo key={index}>
+          <BsDot className='dotIcon' />
+          <span className='infoText'>{detail}</span>
+        </PestInfo>
+      ))}
 
         <ToggleDiv onClick={handleToggle01}>
           <ToggleDivHeader>
@@ -230,7 +234,7 @@ function PestInformation({inputData}) {
               </TextBox>
               <PestImgContainer2>
                 <PestImgContainer>
-                  <PestImage src={`/images/${inputData.pestId - 1}/PestEgg.png`}/>
+                  <PestImage src={inputData.pestStepImage1} />
                 </PestImgContainer>
               </PestImgContainer2>
 
@@ -239,7 +243,7 @@ function PestInformation({inputData}) {
               </TextBox>
               <PestImgContainer2>
                 <PestImgContainer>
-                  <PestImage src={`/images/${inputData.pestId - 1}/PestLarva.png`}/>
+                  <PestImage src={inputData.pestStepImage2}/>
                 </PestImgContainer>
               </PestImgContainer2>
 
@@ -248,7 +252,7 @@ function PestInformation({inputData}) {
               </TextBox>
               <PestImgContainer2>
                 <PestImgContainer>
-                  <PestImage src={`/images/${inputData.pestId - 1}/PestAdult.png`}/>
+                  <PestImage src={inputData.pestStepImage3}/>
                 </PestImgContainer>
               </PestImgContainer2>
               
