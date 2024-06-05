@@ -247,9 +247,9 @@ function InputDate( {onToggle,
     <>
       <InputDiv onClick={handleToggle}>
         날짜 선택
-        <button className='icon'>
+        <div className='icon'>
           {isToggled?<BsCaretUpFill className='icon'/>:<BsCaretDownFill className='icon'/>}
-        </button>
+        </div>
       </InputDiv>
       {isToggled&&(
         <ToggleDiv>

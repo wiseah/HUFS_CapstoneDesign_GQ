@@ -160,10 +160,10 @@ function InputLocation( {onToggle, onClick} ) {
     <>
           <InputDiv onClick={handleToggle}>
             지역 선택(도 단위)
-            <button className='icon'>
+            <div className='icon'>
               {isToggled?
                 <BsCaretUpFill className='icon'/>:<BsCaretDownFill className='icon'/>}
-            </button>
+            </div>
           </InputDiv>
           {isToggled && (
             <IsToggledDiv>

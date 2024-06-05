@@ -82,7 +82,7 @@ const IconTextContainer = styled.div`
     align-items: center;  // 세로 방향에서 아이템을 중앙 정렬
 `;
 
-const Main = () => {
+const Main1 = () => {
   const [extraHeight, setExtraHeight] = useState(0);
 
   // 변경: isOpen과 heightChange를 인수로 받아 처리
@@ -246,4 +246,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Main1;
