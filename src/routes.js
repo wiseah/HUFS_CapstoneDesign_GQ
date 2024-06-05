@@ -3,6 +3,7 @@ import Sitemap from "./pages/Sitemap";
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
 import Test1 from "./pages/Test1";
+import Main1 from "./pages/main copy";
 
 const routes = [
     {
