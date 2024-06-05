@@ -56,6 +56,7 @@ const InsectImage = styled.img`
   width: 220px;
   height: 230px;
   margin: 22px 20px;
+  border-radius: 16px;
 `;
 
 const WormLeftTop = styled.img`
@@ -129,7 +130,7 @@ useEffect(() => {
           
           <ImgContainer>
           <WormLeftTop src={WormLeftTopImg}/>
-            <InsectImage src={InsectImg}/>
+            <InsectImage src={inputData.pest.pestImage}/>
           <WormRightBottom src={WormRightBottomImg}/>
           </ImgContainer>
           
