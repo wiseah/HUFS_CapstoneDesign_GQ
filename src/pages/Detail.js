@@ -137,7 +137,7 @@ useEffect(() => {
           <InsectName>{inputData.pest.pestName || "정보 수신 중"}</InsectName>
           <Container>
             <PestInformation inputData={inputData.pest}/>
-            <DealWithPest/>
+            <DealWithPest inputData={inputData}/>
           </Container>
           
         </Body>

@@ -140,7 +140,7 @@ const ToggleContentAdd=styled.div`
   font-size:${({theme})=>theme.fontSizes.dealwithpestAdd};
 `;
 
-function DealWithPest() {
+function DealWithPest({inputData}) {
   const [isToggledPesticide,setIsToggledPesticide]=useState(false);
   const [isHandleDownloadButton,setIsHandleDownloadButton]=useState(false);
   const [isToggled01, setIsToggled01] = useState(false);
@@ -173,13 +173,17 @@ function DealWithPest() {
   const handleButton=()=>{
     setIsHandleDownloadButton(prevState => !prevState);
   }
+  // inputData와 inputData.pestInfo가 정의되어 있는지 확인합니다.
+  // if (!inputData || !inputData.pestInfo) {
+  // return <div>데이터를 불러오는 중입니다...</div>;
+  // }
 
   return (
     <>
       <Container>
         <Header>
           <BsFillExclamationCircleFill className='headerIcon'/>
-          <span className='headerText'>톱다리개미허리노린재 대처법</span>
+          <span className='headerText'>{inputData.pest.pestName} 대처법</span>
         </Header>
         <ToggleDiv onClick={handleTogglePesticide}>
           <ToggleDivHeader 

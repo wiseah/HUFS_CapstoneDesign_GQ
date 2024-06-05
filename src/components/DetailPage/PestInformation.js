@@ -67,7 +67,7 @@ const PestInfo = styled.div`
     letter-spacing: 0.1vw;
     color: #14264C;
     margin-left: 11px;
-    max-width: 260px; /* 너비를 270px로 제한 */
+    max-width: 250px; /* 너비를 270px로 제한 */
 
     word-wrap: normal; /* 기본적으로 공백에서 줄바꿈 */
     /* word-break: keep-all; 단어단위로 줄바꿈(단어 중간에 줄바꿈하지 않음) */
