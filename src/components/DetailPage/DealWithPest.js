@@ -7,6 +7,7 @@ import {BiArchiveIn} from 'react-icons/bi';
 import {saveAs} from 'file-saver';
 
 import DownloadFile from './DownloadFile';
+import PestManagement from './PestManagements';
 
 const Container=styled.div`
   display: flex;
@@ -138,6 +139,10 @@ const ToggleContentAdd=styled.div`
   color:${({theme})=>theme.colors.orange};
 
   font-size:${({theme})=>theme.fontSizes.dealwithpestAdd};
+  .excelFont{
+    /* text-align: left; */
+    font-size: 10px;
+  }
 `;
 
 function DealWithPest({inputData}) {
@@ -178,6 +183,7 @@ function DealWithPest({inputData}) {
   // return <div>데이터를 불러오는 중입니다...</div>;
   // }
 
+  let managementIndex=0;
   return (
     <>
       <Container>
@@ -206,9 +212,10 @@ function DealWithPest({inputData}) {
           </ToggleDivHeader>
           {isToggledPesticide && (
             <ToggleContent>
-              농약 컴포넌트 입니다.
+              {/* 농약 컴포넌트 입니다. */}
+              {inputData.pest.pestInfo}
               <ToggleContentAdd>
-                <p>추가 정보는 아래 엑셀을 다운 받아서 확인해주세요!</p>
+                <p className='excelFont'>추가 정보는 아래 엑셀을 다운 받아서 확인해주세요!</p>
                 <DownloadFile
                   onClick={handleButton}
                   />
@@ -217,7 +224,9 @@ function DealWithPest({inputData}) {
           )}
           {!isToggledPesticide && (<></>)}
         </ToggleDiv>
-        <ToggleDiv onClick={handleToggle01}>
+
+        {/* 원본 코드 */}
+        {/* <ToggleDiv onClick={handleToggle01}>
           <ToggleDivHeader 
             style={{ 
               background: isToggled01 ? 'white' : 'inherit',
@@ -264,7 +273,17 @@ function DealWithPest({inputData}) {
             </ToggleContent>
           )}
           {!isToggled02 && (<></>)}
-        </ToggleDiv>
+        </ToggleDiv> */}
+
+        {/* 컴포넌트 코드 */}
+        {Array.isArray(inputData.management) ? (
+          inputData.management.map((management) => (
+            <PestManagement key={managementIndex++} management={management} />
+          ))
+        ) : (
+          <div>데이터를 불러오는 중입니다...</div>
+        )}
+
       </Container>
     </>
   )
