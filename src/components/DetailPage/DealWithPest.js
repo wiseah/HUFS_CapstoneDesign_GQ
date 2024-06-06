@@ -277,8 +277,8 @@ function DealWithPest({inputData}) {
 
         {/* 컴포넌트 코드 */}
         {Array.isArray(inputData.management) ? (
-          inputData.management.map((management) => (
-            <PestManagement key={managementIndex++} management={management} />
+          inputData.management.map((management, index) => (
+            <PestManagement key={index} index={index + 1} management={management} />
           ))
         ) : (
           <div>데이터를 불러오는 중입니다...</div>
