@@ -11,7 +11,7 @@ const ToggleContentDownload=styled.button`
   justify-content: center;
 
   flex-wrap: wrap;
-  gap:0.1vw;
+  gap:0.5vw;
   width: 100%;
   padding : 1vw;
 
@@ -20,7 +20,7 @@ const ToggleContentDownload=styled.button`
 
   border-radius: 15px;
 
-  font-size: ${({theme})=>theme.fontSizes.downloadButton};
+  font-size: 14px;
 
   .icon{
     margin: 0px;
@@ -38,6 +38,7 @@ const DownloadFile = (name,fileName) => {
 
     // 링크를 동적으로 생성하여 클릭 이벤트를 트리거하여 파일을 다운로드
     const link = document.createElement('a');
+    
     // link.href = downloadUrl;
     link.href=FILE_URL;
     link.setAttribute('download', '');  // filename을 지정하지 않으면 구글 드라이브의 원본 파일명을 사용합니다
