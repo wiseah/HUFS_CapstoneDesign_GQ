@@ -165,7 +165,7 @@ function InputCrop({ onToggle, onClick }) {
       {isToggled && (
         <IsToggledDiv>
           <IsToggledHeader>
-            <BsGeoFill /> <span>지역 선택</span>
+            <BsGeoFill /> <span>작물 선택</span>
           </IsToggledHeader>
           <IsToggledLine />
           <IsToggledButtonsDiv>
