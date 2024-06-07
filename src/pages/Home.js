@@ -75,8 +75,20 @@ function Home() {
           "담배거세미나방": "주의"
       }
   });
+
+  // 수정 - infoResult useState code
+  // const [infoResult,setInfoResult]=useState({
+  //   "selected_crop": '',
+  //   "selected_location": '',
+  //   "selected_date": "2024-06-04",
+  //   "percentages": {
+  //   },
+  //   "riskLevels": {
+  //   }
+  // })
+
   const [stateData, setStateData] = useState({
-    "percent":"50",
+    "percent":infoResult.percentages,
     "pestName":"톱다리개미허리노린재"
   });
   const [nowData, setNowData] = useState(0);
@@ -90,6 +102,8 @@ function Home() {
     "흰점도둑나방"
   ]
 
+  // 화면 로딩시 api에서 해충이름과 경보 percent 가져오는 코드
+  // 이 코드 없애면 state 컴포넌트에서 "담배거세미나방 - 50"만 출력됨
   useEffect( () => {
     const fetchStateInfo = async () => {
       try{
@@ -108,28 +122,42 @@ function Home() {
     fetchStateInfo();
   }, [])
 
+  // 코드 설명
+  // localStorage에 "inputData"로 저장된 값을 가져온 뒤
+  // 가져온 값은 JSON 문자열이므로 JSON.parse를 사용해 JavaScript 객체로 변환
+  // 변환된 객체를 setInputData를 통해 컴포넌트의 상태로 설정
   useEffect(() => {
     setInputData(JSON.parse(localStorage.getItem("inputData")));
   },[]);
 
+  // header 작물 변경시 데이터 변경
   useEffect(()=>{
     setSelectedCrop(inputData.crop);
   },[inputData]);
 
+  // state 상태 코드
   useEffect(()=>{
+    // 원본 코드
     setStateData({
       "percent":infoResult.percentages[bugs.at(nowData)],
       "pestName":bugs.at(nowData)
     })
+    // 수정 코드
+
     localStorage.setItem("pestName",bugs.at(nowData));
   }, [nowData])
 
   return (
     <Background>
-      <Header selectedCrop={selectedCrop} setSelectedCrop={setSelectedCrop}/>
+      <Header 
+        selectedCrop={selectedCrop} 
+        setSelectedCrop={setSelectedCrop}/>
       <Container>
         <WormRightTop src={WormRightTopImg}/>  
-        <State stateData={stateData} nowData={nowData} setNowData={setNowData}/> 
+        <State 
+          stateData={stateData} 
+          nowData={nowData} 
+          setNowData={setNowData}/> 
       </Container>
       <Line/>
       <Container>
@@ -140,4 +168,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Home;
