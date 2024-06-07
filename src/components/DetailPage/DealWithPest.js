@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { BsFillExclamationCircleFill,BsCaretDownFill ,BsCaretUpFill} from 'react-icons/bs';
+import { 
+  BsFillExclamationCircleFill
+  ,BsCaretDownFill 
+  ,BsCaretUpFill
+  ,BsCaretRightFill
+} from 'react-icons/bs';
 import {BiArchiveIn} from 'react-icons/bi';
 
 // eslint-disable-next-line
 import {saveAs} from 'file-saver';
 
 import DownloadFile from './DownloadFile';
+import Download from './Download';
 import PestManagement from './PestManagements';
 
 const Container=styled.div`
@@ -123,6 +129,19 @@ const ToggleContent=styled.div`
   box-shadow:0px 3px 5px #0000002f;
 
   font-weight: ${({theme})=>theme.fontsWeights.toggle};
+
+
+  flex-wrap: wrap;
+    gap: 0.5vw;
+  .informationHeader{
+    font-weight:700;
+  }
+  .informationContent{
+    flex-wrap: wrap;
+    gap: 0.5vw;
+
+    line-height: 1.3;
+  }
 `;
 const ToggleContentAdd=styled.div`
   display: flex;
@@ -142,6 +161,23 @@ const ToggleContentAdd=styled.div`
   .excelFont{
     /* text-align: left; */
     font-size: 10px;
+  }
+`;
+
+const ToggleInformationContent=styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5vw;
+
+  text-align: left;
+  align-items: center;
+  .icon{
+    margin: 0;
+  }
+  .content{
+    font-size: 16px;
+    line-height: 1.3;
   }
 `;
 
@@ -212,68 +248,51 @@ function DealWithPest({inputData}) {
           </ToggleDivHeader>
           {isToggledPesticide && (
             <ToggleContent>
-              {/* 농약 컴포넌트 입니다. */}
-              {inputData.pest.pestInfo}
+              {inputData.pesticide_info.length > 0 ? (
+                inputData.pesticide_info.map((info, index) => (
+                  <div key={index} className='informationContent'>
+                    <p className='informationHeader'>회사명</p>
+                    <ToggleInformationContent>
+                      <BsCaretRightFill className='icon'/>
+                      <span className='content'>{info.companyName}</span>
+                    </ToggleInformationContent>
+                    <p className='informationHeader'>농약명</p>
+                    <ToggleInformationContent>
+                      <BsCaretRightFill className='icon'/>
+                      <span className='content'>{info.pesticideName}</span>
+                    </ToggleInformationContent>
+                    <p className='informationHeader'>안전 사용 시기</p>
+                    <ToggleInformationContent>
+                      <BsCaretRightFill className='icon'/>
+                      <span className='content'>{info.safeUsagePeriod}</span>
+                    </ToggleInformationContent>
+                    <p className='informationHeader'>안전 사용 횟수</p>
+                    <ToggleInformationContent>
+                      <BsCaretRightFill className='icon'/>
+                      <span className='content'>{info.safeUsageFrequency}</span>
+                    </ToggleInformationContent>
+                  </div>
+                ))
+              ) : (
+                <p>Loading...</p>
+              )}
+              
               <ToggleContentAdd>
                 <p className='excelFont'>추가 정보는 아래 엑셀을 다운 받아서 확인해주세요!</p>
-                <DownloadFile
+                {/* <DownloadFile
+                  name={inputData.pest.pestName}
+                  fileUrl={inputData.pest.pesticideExcel}
                   onClick={handleButton}
-                  />
+                  /> */}
+                <Download
+                  inputData={inputData}
+                  onClick={handleButton}
+                />
               </ToggleContentAdd>
             </ToggleContent>
           )}
           {!isToggledPesticide && (<></>)}
         </ToggleDiv>
-
-        {/* 원본 코드 */}
-        {/* <ToggleDiv onClick={handleToggle01}>
-          <ToggleDivHeader 
-            style={{ 
-              background: isToggled01 ? 'white' : 'inherit',
-              color: isToggled01 ? '#FF6A4A' : 'inherit' }}>
-            <div className='toggleHeader'>
-              대처법 01
-              {isToggled01 ?
-                  <BsCaretUpFill 
-                    style={{
-                      color:isToggled01 ? '#FF6A4A' : 'inherit'
-                    }}
-                    className='icon' /> :
-                  <BsCaretDownFill className='icon'/>
-              }
-            </div>
-          </ToggleDivHeader>
-          {isToggled01 && (
-            <ToggleContent>
-              대처법 01 컴포넌트 입니다.
-            </ToggleContent>
-          )}
-          {!isToggled01 && (<></>)}
-        </ToggleDiv>
-        <ToggleDiv onClick={handleToggle02}>
-          <ToggleDivHeader 
-            style={{ 
-              background: isToggled02 ? 'white' : 'inherit',
-              color: isToggled02 ? '#FF6A4A' : 'inherit' }}>
-            <div className='toggleHeader'>
-              대처법 02
-              {isToggled02 ?
-                  <BsCaretUpFill 
-                    style={{
-                      color:isToggled02 ? '#FF6A4A' : 'inherit'
-                    }}
-                    className='icon' /> :
-                  <BsCaretDownFill className='icon'/>
-              }
-            </div>
-          </ToggleDivHeader>
-          {isToggled02 && (
-            <ToggleContent>
-              대처법 02 컴포넌트 입니다.
-            </ToggleContent>
-          )}
-          {!isToggled02 && (<></>)}
-        </ToggleDiv> */}
 
         {/* 컴포넌트 코드 */}
         {Array.isArray(inputData.management) ? (
