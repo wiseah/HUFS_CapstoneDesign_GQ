@@ -12,7 +12,7 @@ const ToggleContentDownload=styled.button`
   flex-wrap: wrap;
   gap:0.5vw;
   width: 100%;
-  padding : 1vw;
+  padding : 0.5vw;
 
   background-color: ${({theme})=>theme.colors.white};
   color:${({theme})=>theme.colors.orange};
@@ -20,6 +20,7 @@ const ToggleContentDownload=styled.button`
   border-radius: 15px;
 
   font-size: 14px;
+  font-weight: 700;
 
   .icon{
     margin: 0px;

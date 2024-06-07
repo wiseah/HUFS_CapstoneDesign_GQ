@@ -9,9 +9,6 @@ import {
 import {BiArchiveIn} from 'react-icons/bi';
 
 // eslint-disable-next-line
-import {saveAs} from 'file-saver';
-
-import DownloadFile from './DownloadFile';
 import Download from './Download';
 import PestManagement from './PestManagements';
 
@@ -136,12 +133,14 @@ const ToggleContent=styled.div`
   .informationHeader{
     font-weight:700;
   }
-  .informationContent{
-    flex-wrap: wrap;
-    gap: 0.5vw;
+`;
+const PesticideContent=styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 0.5vw;
 
-    line-height: 1.3;
-  }
+  line-height: 1.3;
 `;
 const ToggleContentAdd=styled.div`
   display: flex;
@@ -250,7 +249,7 @@ function DealWithPest({inputData}) {
             <ToggleContent>
               {inputData.pesticide_info.length > 0 ? (
                 inputData.pesticide_info.map((info, index) => (
-                  <div key={index} className='informationContent'>
+                  <PesticideContent key={index}>
                     <p className='informationHeader'>회사명</p>
                     <ToggleInformationContent>
                       <BsCaretRightFill className='icon'/>
@@ -271,7 +270,7 @@ function DealWithPest({inputData}) {
                       <BsCaretRightFill className='icon'/>
                       <span className='content'>{info.safeUsageFrequency}</span>
                     </ToggleInformationContent>
-                  </div>
+                  </PesticideContent>
                 ))
               ) : (
                 <p>Loading...</p>
@@ -279,11 +278,7 @@ function DealWithPest({inputData}) {
               
               <ToggleContentAdd>
                 <p className='excelFont'>추가 정보는 아래 엑셀을 다운 받아서 확인해주세요!</p>
-                {/* <DownloadFile
-                  name={inputData.pest.pestName}
-                  fileUrl={inputData.pest.pesticideExcel}
-                  onClick={handleButton}
-                  /> */}
+                
                 <Download
                   inputData={inputData}
                   onClick={handleButton}
