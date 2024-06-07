@@ -264,7 +264,7 @@ function Header({selectedCrop, setSelectedCrop}) {
   return (
     <>
         <Header1>
-            <Button onClick={() => navigate('/main')}>
+            <Button onClick={() => navigate('/')}>
                 <BiChevronLeft size='30px' color='#14264C'/>
             </Button>
             <Select>

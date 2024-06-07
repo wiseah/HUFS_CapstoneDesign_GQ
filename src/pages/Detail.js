@@ -122,7 +122,7 @@ useEffect(() => {
           <Button onClick={() => navigate('/home')}>
             <BiChevronLeft size='35px' color='#ffffff'/>
           </Button>
-          <Button onClick={() => navigate('/main')}>
+          <Button onClick={() => navigate('/')}>
             <BsFillHouseDoorFill size='30px' color='#ffffff'/>
           </Button>
         </Header>
