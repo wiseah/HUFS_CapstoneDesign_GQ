@@ -165,7 +165,8 @@ const StateBodyText = styled.div`
   }
   .pestName {
     text-align: center;
-    font-size: ${({ theme }) => theme.fonts.component.name};
+    font-size: 30px;
+    /* font-size: ${({ theme }) => theme.fonts.component.name}; */
   }
 `;
 const GotoDetail = styled.button`
