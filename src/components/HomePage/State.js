@@ -29,7 +29,7 @@ const Container = styled.div`
 
   width: 330px;
 
-  padding: 1.5vw;
+  padding: 1.5vw 1.2vh;
 
   flex-wrap: wrap;
   gap: 1.5vw;
@@ -43,11 +43,11 @@ const Container = styled.div`
 
 // 백분율에 따라 배경색 설정하는 함수
 const getBackgroundColor = (percent) => {
-    if (percent > 74) {
+    if (percent >= 95) {
       return '#FF4A4A'; 
-    } else if (percent > 49) {
+    } else if (percent >= 71 && percent < 95) {
       return '#FF6A4A'; 
-    } else if (percent > 24) {
+    } else if (percent >= 46 && percent < 71) {
       return '#FFAC4A'; 
     } else {
       return '#2ADEA1'; 
@@ -59,7 +59,7 @@ const Header = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   gap: 15px;
-
+  margin-left: 10px;
   font-size: ${({ theme }) => theme.fontSizes.stateHeader};
   font-weight: ${({ theme }) => theme.fontsWeights.state};
 
@@ -86,6 +86,7 @@ const Body = styled.div`
   .arrowIcon {
     width: ${({ theme }) => theme.icons.componentLeft};
     height: ${({ theme }) => theme.icons.componentLeft};
+    cursor: pointer;
   }
 
     .slick-prev{
@@ -154,6 +155,7 @@ const StateBodyText = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  width: 260px;
 
   flex-wrap: wrap;
   gap: 20px;
@@ -215,13 +217,13 @@ function State({stateData, nowData, setNowData}) {
 
   useEffect(() => {
     let newState = '';
-    if (stateData.percent > 74 && stateData.percent < 101) {
+    if (stateData.percent >= 95 && stateData.percent < 101) {
       newState = '위험해요!';
-    } else if (stateData.percent > 49 && stateData.percent < 75) {
+    } else if (stateData.percent >= 71 && stateData.percent < 95) {
       newState = '주의가 필요해요!';
-    } else if (stateData.percent > 24 && stateData.percent < 50) {
+    } else if (stateData.percent >= 46 && stateData.percent < 71) {
       newState = '조심해볼까요?';
-    } else if (stateData.percent > 0 && stateData.percent < 25) {
+    } else if (stateData.percent >= 0 && stateData.percent < 46) {
       newState = '괜찮아요!';
     }
     setState(newState);
