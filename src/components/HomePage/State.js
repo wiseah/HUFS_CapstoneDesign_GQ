@@ -29,7 +29,7 @@ const Container = styled.div`
 
   width: 330px;
 
-  padding: 1.5vw;
+  padding: 1.5vw 1.2vh;
 
   flex-wrap: wrap;
   gap: 1.5vw;
@@ -59,7 +59,7 @@ const Header = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   gap: 15px;
-
+  margin-left: 10px;
   font-size: ${({ theme }) => theme.fontSizes.stateHeader};
   font-weight: ${({ theme }) => theme.fontsWeights.state};
 
@@ -86,6 +86,7 @@ const Body = styled.div`
   .arrowIcon {
     width: ${({ theme }) => theme.icons.componentLeft};
     height: ${({ theme }) => theme.icons.componentLeft};
+    cursor: pointer;
   }
 
     .slick-prev{
@@ -154,6 +155,7 @@ const StateBodyText = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  width: 260px;
 
   flex-wrap: wrap;
   gap: 20px;

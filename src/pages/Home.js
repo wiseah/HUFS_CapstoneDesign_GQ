@@ -97,6 +97,10 @@ function Home() {
   }, [inputData]);
 
   useEffect(() => {
+    setNowData(0); // nowData 상태를 0으로 초기화합니다.
+  }, [selectedCrop]);
+
+  useEffect(() => {
     if (infoResult && infoResult.percentages && bugs[nowData]) {
       const currentBug = bugs[nowData];
       setStateData({
